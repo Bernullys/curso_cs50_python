@@ -4,15 +4,13 @@
 def main():
 
     mass = int(input("m: "))
-
     E = energy(mass)
-
-    print("E: ", E)
-
+    print("Energy in jouls is ", E)
 
 def energy(mass):
+
     c = 300000000
-    E = mass * pow(c, 2)
+    E = mass*pow(c,2)
     return E
 
 main()
