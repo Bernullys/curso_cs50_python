@@ -13,7 +13,7 @@ Lecture0 Functions
     funtion()
 
     print(f"str ${variable}")                   # str que queramos
-    (float: .nf)                                # decimal : . cantidad_de_decimales f
+    (float: .nf)                                # decimal : cantidad_de_decimales f
 
 Lecture0 Methods:
 
@@ -28,4 +28,8 @@ Date: 30-01-2023
 
 I'm revewing the first problems, but I'm also practicing functions.
 
+Date: 05-02-2023
 
+Lecture Methods:
+
+    str.startswith()
