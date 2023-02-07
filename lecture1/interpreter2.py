@@ -1,19 +1,21 @@
-eq = input("Expression: ")
+def main ():
+    arg = input("Expression: ")
+    interpreter(arg)
 
-x, y, z = eq.split(" ")
+def interpreter(eq):
+    x, y, z = eq.split(" ")
+    x = int(x)
+    z = int(z)                                      # Como hago para retornar los resultados en vez de imprimirlos desde la funcion ?
 
-x = int(x)
-z = int(z)
+    if y == "+":
+        suma = float(x+z)
+        return suma
+    elif y == "-":
+        print(float(x - z))
+    elif y == "*":
+        print(float(x * z))
+    elif y == "/" and z != 0:
+        print(round(float(x/z),1))
+    elif z == 0: print("No se puede dividir entre cero")
 
-
-
-if y == "+":
-    print(float(x + z))
-elif y == "-":
-    print(float(x - z))
-elif y == "*":
-    print(float(x * z))
-elif y == "/" and z != 0:
-    print(float(x / z))
-    else: print("No se puede dividir entre cero")
-
+main()

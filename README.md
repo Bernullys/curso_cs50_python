@@ -7,6 +7,7 @@ Lecture0 Functions
     input()
     int()
     float()
+    round(number,n)
     pow(x,n)
 
     def function():
@@ -27,5 +28,18 @@ Lecture0 Methods:
 Date: 30-01-2023
 
 I'm revewing the first problems, but I'm also practicing functions.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
