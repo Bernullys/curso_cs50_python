@@ -23,13 +23,11 @@ Lecture0 Methods:
     str.replace("lo_que_sea", "por_otra_cosa_que_sea")
 
 
-    
-Date: 30-01-2023
-
 I'm revewing the first problems, but I'm also practicing functions.
 
-Date: 05-02-2023
 
-Lecture Methods:
+Lecture1 Methods:
 
     str.startswith()
+
+I have a question about when a function has to return more than one variable o print. How should be the return
