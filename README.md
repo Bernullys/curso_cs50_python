@@ -15,7 +15,7 @@ Lecture0 Functions
     funtion()
 
     print(f"str ${variable}")                   # str que queramos
-    (float: .nf)                                # decimal : . cantidad_de_decimales f
+    (float: .nf)                                # decimal : cantidad_de_decimales f
 
 Lecture0 Methods:
 
@@ -24,14 +24,11 @@ Lecture0 Methods:
     str.casefold()
     str.replace("lo_que_sea", "por_otra_cosa_que_sea")
     var1, var2 = varx.split(":") //de una variable con una entrada dividida por un caracter los separa desde donde se ponga el caracter
+    str.startswith()
+    str.endswith()
 
 
-    
-Date: 30-01-2023
-
-I'm revewing the first problems, but I'm also practicing functions.
-
-
+I have a question about when a function has to return more than one variable o print. How should be the return
 
 09-02-2023
 
@@ -64,24 +61,6 @@ var_dict = {                            # la parte de varn son las keys y la par
 
 for var_dict_1 in var_dict:
     print(var_dict_1, var_dict[var_dict_1], sep=", ")       # Esto imprimiria las keys con sus valores deparados por coma y espacio
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
