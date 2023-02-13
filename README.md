@@ -52,7 +52,9 @@ var_lists = [0, 1, 2, ..., n]           # list are the equivalent of arrays in j
 
 len                                     # len es el largo de la lista
 
-var_dict = {                            # la parte de varn son las keys y la parte de las Varn.n son los valores de las keys
+dict or dictionaries is a data structure that allows you to associete keys with values.
+
+var_dict = {                            # la parte de varn son las keys y la parte de las Varn.n son los valores de las keys - Un valor puede ser None
     var1: Var1.1, varX: VarX.1, ...
     var2: Var2.2, varY: VarY.1, ...
     ...
