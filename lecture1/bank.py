@@ -2,6 +2,8 @@ def main():
 
     greeting = greetings(input("Greeting: "))
 
+    
+
 
 def greetings(a):
 
