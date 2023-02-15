@@ -2,11 +2,13 @@
 
 camelCase = input("camelCase: ")
 
+snake_case_store = ""
 
-uppers = ["A", "B", "C", "D"]
+for letter in camelCase:
+    if letter.isupper() == True:
+        snake_case_store = snake_case_store + "_" + letter.lower()
+    else:
+        snake_case_store = snake_case_store + letter
 
-for i in camelCase:
-    if i in uppers:
-        i = "_",i.lower()
-    print(i, end="")
+print(snake_case_store)
 

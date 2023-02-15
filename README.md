@@ -17,7 +17,7 @@ Lecture0 Functions
     print(f"str ${variable}")                   # str que queramos
     (float: .nf)                                # decimal : cantidad_de_decimales f
 
-Lecture0 Methods:
+Lectures Methods:
 
     str.strip()
     str.lower()
@@ -26,6 +26,8 @@ Lecture0 Methods:
     var1, var2 = varx.split(":") //de una variable con una entrada dividida por un caracter los separa desde donde se ponga el caracter
     str.startswith()
     str.endswith()
+    str.isupper()
+    str.islower()
 
 
 I have a question about when a function has to return more than one variable o print. How should be the return

@@ -1,3 +1,6 @@
+
+# This code has a big bug because it only works for a simple camelCase
+
 def main():
 
     variable_name = input("camelCase: ")
