@@ -1,18 +1,26 @@
+def main():
+
+  camelCase = input("camelCase: ")
+  snake_case =(from_cC_to_s_k(camelCase))
+  print(snake_case)
+  
 
 
-camelCase = input("camelCase: ")
+def from_cC_to_s_k(camel):
 
-snake_case_store = ""
+  snake_case_store = ""
 
-for letter in camelCase:
+  for letter in camel:
 
-    if len(snake_case_store) > 0:
+      if len(snake_case_store) > 0:
 
-        if letter.isupper() == True:
-          snake_case_store = snake_case_store + "_" + letter.lower()
-        else:
-            snake_case_store = snake_case_store + letter.lower()
-    
-    else: snake_case_store = snake_case_store + letter.lower()
+          if letter.isupper() == True:
+            snake_case_store += "_" + letter.lower()
+          else:
+              snake_case_store += letter.lower()
+      
+      else: snake_case_store += letter.lower()
+  
+  return snake_case_store
 
-print(snake_case_store)
+main()
