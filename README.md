@@ -29,6 +29,10 @@ Lectures Methods:
     str.endswith()
     str.isupper()
     str.islower()
+    str.isdigt()                                #entrega True or False si el que el str contiene solo digitos no simbolos o puntuación.
+    str.index()                                 #entrega el indice de un str
+    str.isalpha()
+    str.isalnum()
 
 
 I have a question about when a function has to return more than one variable o print. How should be the return
