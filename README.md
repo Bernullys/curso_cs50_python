@@ -16,8 +16,9 @@ Lecture0 Functions
 
     print(f"str ${variable}")                   # str que queramos
     (float: .nf)                                # decimal : cantidad_de_decimales f
+    abs()                                       # retorna el valor absoluto de un numero
 
-Lecture0 Methods:
+Lectures Methods:
 
     str.strip()
     str.lower()
@@ -26,6 +27,12 @@ Lecture0 Methods:
     var1, var2 = varx.split(":") //de una variable con una entrada dividida por un caracter los separa desde donde se ponga el caracter
     str.startswith()
     str.endswith()
+    str.isupper()
+    str.islower()
+    str.isdigt()                                #entrega True or False si el que el str contiene solo digitos no simbolos o puntuación.
+    str.index()                                 #entrega el indice de un str
+    str.isalpha()
+    str.isalnum()
 
 
 I have a question about when a function has to return more than one variable o print. How should be the return
@@ -52,7 +59,9 @@ var_lists = [0, 1, 2, ..., n]           # list are the equivalent of arrays in j
 
 len                                     # len es el largo de la lista
 
-var_dict = {                            # la parte de varn son las keys y la parte de las Varn.n son los valores de las keys
+dict or dictionaries is a data structure that allows you to associete keys with values.
+
+var_dict = {                            # la parte de varn son las keys y la parte de las Varn.n son los valores de las keys - Un valor puede ser None
     var1: Var1.1, varX: VarX.1, ...
     var2: Var2.2, varY: VarY.1, ...
     ...

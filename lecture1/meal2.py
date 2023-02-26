@@ -15,7 +15,7 @@ def convert(time):
     hr, sec = time.split(":")
     hr = float(hr)
     sec = float(sec)
-    food_time = hr + (sec*99/60)/100
-    return food_time
+    food_t = hr + (sec*99/60)/100
+    return food_t
 
 main()
