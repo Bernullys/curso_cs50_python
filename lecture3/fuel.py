@@ -1,27 +1,27 @@
 def main():
 
-    fuel_gauge = input("Fraction: ")
-    tank = get_a_correct_input(fuel_gauge)
-    if tank <= 1:
-        tank = "E"
-    elif tank >= 99:
-        tank = "F"
-    else: tank = tank
+    fraction = correct_fraction()
+    if fraction <= 1:
+        print("E")
+    elif fraction >= 99:
+            print("F")
+    else:
+        print(int(fraction),"%")
 
-    print(tank,"%")
-     
-
-def get_a_correct_input(fuel_gauge):
+def correct_fraction():
     while True:
         try:
-            x, y = fuel_gauge.split("/")
+            fuel_gauge = input("Fraction: ")
+            x,y = fuel_gauge.split("/")
             x = int(x)
             y = int(y)
-            tank = int((x/y)*100)
-        except ValueError:
-            print("Input should have this format: intenger/intenger")
-        else:
-            break
-        return tank
-
+            answer = (x/y)*100
+            if answer < 100:
+                return answer
+            else: print("It can't be greater than 100%")
+        except (ValueError, TypeError):
+            print("Incorrect Value")    
+        except (ZeroDivisionError):
+            print("You can't divide by 0")
+    
 main()
