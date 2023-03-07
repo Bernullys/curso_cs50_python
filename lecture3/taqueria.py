@@ -17,7 +17,8 @@ while True:
         for entrees in menu:
             if  entrees.casefold() == order.casefold():
                 cost += menu[entrees]
-                print("Total: $"+cost)
+                #print(f"Total: ${cost}0")
+                print("Total: $",f"{cost:.2f}",sep="")
             else: pass
     except EOFError:
         print("\n")
