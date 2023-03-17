@@ -71,5 +71,27 @@ var_dict = {                            # la parte de varn son las keys y la par
 for var_dict_1 in var_dict:
     print(var_dict_1, var_dict[var_dict_1], sep=", ")       # Esto imprimiria las keys con sus valores deparados por coma y espacio
 
+########## EXCEPTIONS #########################################
 
+while True:
+    try:
+        code
+        code
+    except (error_type_1, ..., error_typy_n)
+        code
+        or
+        try:
+            code
+            ...
+            break
+            else:pass   ### this will promp again for an input
+    except (error_type_1, ..., error_typy_n)
+        try:
+            code
+            else:pass
+        except (error_type)
+            pass
+        
+
+##### at grocery.py in lecture3 is how to create a dict and how to print it.
 
