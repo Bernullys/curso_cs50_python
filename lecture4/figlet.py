@@ -8,7 +8,7 @@ figlet.getFonts()
 # to set a font # Where the name of the fonts are in a link  and has to be in ""#
 #### figlet.setFont(font="banner") #### donde banner es un tipo de letra#
 
-import random
+import random 
 import sys
 
 if len(sys.argv) == 1:
