@@ -17,6 +17,8 @@ Lecture0 Functions
     print(f"str ${variable}")                   # str que queramos
     (float: .nf)                                # decimal : cantidad_de_decimales f
     abs()                                       # retorna el valor absoluto de un numero
+    print("\n")                                 #Imprime una linea vacia
+    print(end="")                               #Imprime y termina de una vez 
 
 Lectures Methods:
 
