@@ -49,6 +49,9 @@ for condition: # for loops iterates through a list of items
 
 range(n) # provides back n values
 
+NOTA: me di cuenta de que si en una funcion se regresa solo True o solo False siempre se regresara ese booleano asi la condicion no se cumpla.
+Por otro lado tengo que tener presente de que si se quiere probar varias condiciones, se pueden probar las condiciones falsas menos una.
+
 ######## Pequeña funcion para comprobar una entrada ########
 while True:
     n = int(input("What's n? ))
