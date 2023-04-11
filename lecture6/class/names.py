@@ -1,5 +1,8 @@
-with open("nicknames.txt", "r") as file:
-    lines = file.readlines()
+names =[]
 
-for line in lines:
-    print(f"Hello, {line}")
+with open("nicknames.txt") as file:
+    for line in file:
+        names.append(line.rstrip())
+
+for name in sorted(names):
+    print(f"Hello, {name}")
