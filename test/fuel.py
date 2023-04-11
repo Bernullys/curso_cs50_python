@@ -1,21 +1,17 @@
 def main():
-    convertion = convert()
+    fraction = input("Fraction: ")
+    convertion = convert(fraction)
     gauge_percent = gauge(convertion)
-    if gauge_percent <= 1:
-        print("E")
-    elif gauge_percent >= 99:
-        print("F")
-    else:
-        print(f"{gauge_percent:.0f}%")
 
-def convert():
+    print(gauge_percent)
+
+def convert(fraction):
     while True:
         try:
-            fraction = input("Fraction: ")
             x,y = fraction.split("/")
             x_int = int(x)
             y_int = int(y)
-        except (ValueError, ZeroDivisionError):
+        except (ValueError):
             pass
         else:
             try:
@@ -25,8 +21,13 @@ def convert():
                 pass
 
 def gauge(percentage):
-    percent = round(percentage*100, 0)
-    return percent
+    percent = round(percentage*100)
+    if percent <= 1:
+        return "E"
+    elif percent >= 99:
+        return "F"
+    else:
+        return str(percent) + "%"
 
 if __name__ == "__main__":
     main()
