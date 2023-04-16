@@ -12,8 +12,8 @@ from lines2 import exact_input
 exact_input()
 menu = []
 with open(sys.argv[1]) as csvfile:
-    reader = csv.reader(csvfile)
-    for menu_line in reader:
+    reader = csv.reader(csvfile)    #the reader = csv.reader() function create one list for each row of our csv file
+    for menu_line in reader:        #the diffference with DictReader is that DictReader create one dictionary for each row of our csv file
         menu.append(menu_line)
 
 print(tabulate(menu, headers="firstrow", tablefmt="grid"))
