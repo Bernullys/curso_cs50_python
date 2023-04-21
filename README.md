@@ -1,6 +1,7 @@
 # curso_cs50_python
-I'm going to put here notes of every exercice of this course
+I'm going to put here notes of every clase and exercice of this course
 
+```py
 
     print()
     print("\n")                             #Imprime una linea vacia
@@ -32,10 +33,12 @@ I'm going to put here notes of every exercice of this course
     abs()                                       # retorna el valor absoluto de un numero
     len()                                       # returns the length of the variable or list
     sorted()                                    #ordena en orden alfabetico
+    .append()                                   #is used with a for loop to make a list or in the right way to make a dict
 
 Methods:
 
     str.strip()                             #remove whitespace from the str
+    str.rstrip()
     str.title()                             #capitalize the first letter of each word
     str.lower()
     str.casefold()
@@ -147,6 +150,7 @@ Dicts:
 
 Slices:
 
+    str[n:]
     str[0:n]
     list[0:n]
 
@@ -180,4 +184,152 @@ Exceptions:
                 pass
         
 
+Libraries or Modules in Python: Always check the documents to know how the specific module works
 
+    import random
+    random.choice([list])
+    random.randint(int1, int2)
+    random.shuffle([list])                              #shuffle a list into a random order
+
+    import statistics
+    statistics.men([list of numbers])                   #average of these values
+
+    import sys
+    sys.argv[n]
+    sys.exit("string")
+
+    pip                                                 #package manager
+    pip install name_of_package
+    
+    import requests                                     #to use APIs
+    variablex = requests.get("API link")
+    variablex.json()                                    #this got the API info and returns a dict
+
+    variablex["list1"]["list2"]...["listn"]             #until get the value we want
+
+    import json
+    json.dumps(variablex.json(), indent=2)              #to make the output more readable
+
+    import inflect
+    p = inflect.engine()                                #this to lines come together
+
+    import emoji
+    emoji.emojze(str)
+
+    from pyyfiglet import Figlet
+    figlet = Figlet()                                   #this two come together
+
+    from tabulate import tabulate
+
+    import csv
+
+    from PIL import Image, ImageOps
+    Image.open()
+    size =imagex.size
+    ImageOps.fit(imagex, size)
+    imagex.paste(imagey, imagey)
+    imagex.save(file_name_with_extension)
+
+    import os                                           
+    os.path.splitext()                                  #split from extensions
+
+Unit Test:
+
+    pytest                                              #is a installed package
+    pytest file_name                                    #to run the test
+    test_file_name                                      #has to be the name of the file with the test
+
+    this is how is used:
+
+    from file import name_of_function_under_test1, name_of_function_under_testn
+    import pytest
+    def main():
+        function_test_name1()
+        function_test_namen_or_excetion()
+    def function_test_name1():
+        assert name_of_function_under_test1(corner argument) == correct_output and name_of_function_under_testn(corner argument) == correct_output
+    def function_test_namen_or_excetion():
+        with pytest.raises(ErrorException):
+            name_of_function_under_testn(error argument)
+    if __name__"__main__":
+        main()
+
+
+File I/O:
+
+    open("file_name.extension", "w")
+    .write()
+    .close()
+    open("file_name.extension", "a")
+    open("file_name.extension", "r")
+
+    with open("file_name.extension", "a") as file_name:
+        file_name.write()
+
+    with open("file_name.extension", "r") as file_name:
+        lines = file_name.readlines()
+    for line in lines:
+        print(line.rstrip())
+
+    Example:
+    students = []
+    with open("students.csv") as file:
+        for line in file:
+            name, house = line.rstrip().split(",")
+            students.append({"name": name, "house": house})
+    def get_name(student):
+        return student["name"]
+    for student in sorted(students, key=get_name):
+        print(f"{student['name']} is in {student['house']}")
+
+    Same same example:
+    students = []
+    with open("students.csv") as file:
+        for line in file:
+            name, house = line.rstrip().split(",")
+            students.append({"name": name, "house": house})
+    for student in sorted(students, key=lambda student: student["name"]):
+        print(f"{student['name']} is in {student['house']}")
+
+    Example:
+    import csv
+    students = []
+    with open("students.csv") as file:
+        reader = csv.reader(file)                                               #returns a list
+        for row in reader:
+            students.append({"name": row[0], "home": row[1]})
+    for student in sorted(students, key=lambda student: student["name"]):
+        print(f"{student['name']} is from {student['home']}")
+
+    Example:
+    import csv
+    students = []
+    with open("students.csv") as file:
+        reader = csv.DictReader(file)                                           #returns a dict
+        for row in reader:
+            students.append({"name": row["name"], "home": row["home"]})
+    for student in sorted(students, key=lambda student: student["name"]):
+        print(f"{student['name']} is in {student['home']}")
+
+    Example:
+    import csv
+    name = input("What's your name? ")
+    home = input("Where's your home? ")
+    with open("students.csv", "a") as file:
+        writer = csv.DictWriter(file, fieldnames=["name", "home"])
+        writer.writeheader()
+        writer.writerow({"name": name, "home": home})
+
+    Example:
+    name_last_house = []
+    with open(sys.argv[1]) as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            separated_name = row["name"].split(",")
+            name_last_house.append({"first_name": separated_name[1], "last_name": separated_name[0], "house": row["house"]})
+    with open(sys.argv[2], 'w') as file:
+        fieldnames = ['first_name', 'last_name', 'house']
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in name_last_house:
+            writer.writerow({"first_name": row["first_name"], "last_name": row["last_name"], "house": row["house"]})
