@@ -52,6 +52,7 @@ Methods:
     str.index()                                 #entrega el indice de la letra del string - la letra va dentro de los parentesis con comillas
     str.isalpha()
     str.isalnum()
+    str.removeprefix()                          #remove the begginning of a string
 
 Shortcuts:
 
@@ -233,6 +234,11 @@ Libraries or Modules in Python: Always check the documents to know how the speci
     import os                                           
     os.path.splitext()                                  #split from extensions
 
+    import re
+    re.search(pattern, string, flags=0)
+    re.match
+    re.fullmatch
+
 Unit Test:
 
     pytest                                              #is a installed package
@@ -333,3 +339,51 @@ File I/O:
         writer.writeheader()
         for row in name_last_house:
             writer.writerow({"first_name": row["first_name"], "last_name": row["last_name"], "house": row["house"]})
+
+
+Regular Expressions:
+
+    import re
+    re.search(pattern, string, flags=0)
+
+            #these ones look afther their own position:
+    .       #any character except a new line
+    *       #0 or more repetitions
+    +       #1 or more repetitions
+    ?       #0 or 1 repetition
+    {m}     #m repetitions
+    {m,n}   #m-n repetitions
+
+    \                   #backslash is a scape character
+    r                   #in front of a string is a row string r"str" none character in tha string is special
+    ^                   #matches the start of the string
+    $                   #matches the end of the string
+    []                  #set of characters
+    [^]                 #complementing the set - [^x]+ --- this means any character except X
+    [a-zA-Z0-9_]        #a to z and A to Z and 0 to 9 and _
+    \w                  #means the same as [a-zA-Z0-9_]
+    \d                  #decimal digit
+    \D                  #not a decimal digit
+    \s                  #whitespace characters
+    \S                  #not a whitespace character
+    \w                  #word character, as well as numbers and the underscore
+    \W                  #not a word character
+    |                   #or
+
+    A|B                 #either A or B
+    (...)               #a group
+    (?:...)             #non-capturing version
+
+                        #built in flag cariables:
+    re.IGNORECASE       #ignore if is upper or lower case
+    re.MULTILINE
+    re.DOTALL
+                        #cleaning up user input
+    matches.groups()    #returns specific groups
+    matches.group()     #returns specific group
+    :=                  #warlus operator assigns a value from right to left and allows to ask a boolean question at the same time
+
+                        #extracting user input
+    re.sub(pattern, repl, string, count=0, flags=0)
+    
+    ?:                  #tells the compiler it does not have to capture what is in that spot in our regular expression
