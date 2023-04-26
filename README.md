@@ -346,6 +346,7 @@ Regular Expressions:
     import re
     re.search(pattern, string, flags=0)
 
+            #Use this page to check the patter we are going to check first regex101.com
             #these ones look afther their own position:
     .       #any character except a new line
     *       #0 or more repetitions
