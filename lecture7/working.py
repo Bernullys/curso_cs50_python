@@ -7,29 +7,34 @@ def main():
 
 def convert(s):
 
-    hours = re.search(r"^([0-9])|(1[0-2]):?([0-5])([0-9])? (AM)?(PM)? to ([0-9])|(1[0-2]):?([0-5])([0-9])? (AM)?(PM)?$",s)
+    hours = re.search(r"^([0-9]|1[0-2]):?([0-5][0-9])? ([A-P]M) to ([0-9]|1[0-2]):?([0-5][0-9])? ([A-P]M)$",s)
     if hours:
-        hours = hours.groups()
-        if hours.group(1):
-        #     hrs1 = int(hours.group(1))
-        # else: hrs1 = int(hours.group(2))
-        # if hours.group(3):
-        #     min_1 = int(hours.group(3) + hours.group(4))
-        # else: min_1 = int("0" + hours.group(4))
-            print(hours.group(1))
+        hours_in_parts = hours.groups()
+        first_part = new_format(hours_in_parts[0],hours_in_parts[1],hours_in_parts[2])
+        second_part = new_format(hours_in_parts[3],hours_in_parts[4],hours_in_parts[5])
+        return f"{first_part} to {second_part}"
+    else:
+        raise ValueError
 
+def new_format(hrs,mins,am_pm):
+    if am_pm == "PM":
+        if hrs == 12:
+            new_hrs = 12
+        else: 
+            new_hrs = int(hrs) + 12
+    else:
+        if hrs == 12:
+            new_hrs = 0
+        else:
+            new_hrs = int(hrs)
 
-        # if hours.group(3):
-        #     hrs = int(hours.group(1))
-        #     min = int(hours.group(2))
-        #     if hrs > 9 and min > 9:
-        #         print(hrs,":",min, sep="")
-        #     elif hrs > 9 and min < 9:
-        #         print(hrs,":","0",min, sep="")
-        #     elif hrs < 9 and min > 9:
-        #         print("0",hrs,":",min, sep="")
-        #     elif hrs < 9 and min > 9:
-        #         print("0",hrs,":","0",min, sep="")
+    if mins == None:
+        new_mins = 0
+        new_time_format = f"{new_hrs:02}:{new_mins:02}"
+    else:
+        new_time_format = f"{new_hrs:02}:{mins:02}"
+  
+    return new_time_format
 
 if __name__ == "__main__":
     main()
