@@ -187,6 +187,8 @@ Exceptions:
 
 Libraries or Modules in Python: Always check the documents to know how the specific module works
 
+#Always check its functions with chatgpt
+
     import random
     random.choice([list])
     random.randint(int1, int2)
@@ -238,6 +240,8 @@ Libraries or Modules in Python: Always check the documents to know how the speci
     re.search(pattern, string, flags=0)
     re.match
     re.fullmatch
+
+    import validators             #to validate specifics inputs
 
 Unit Test:
 
@@ -388,3 +392,9 @@ Regular Expressions:
     re.sub(pattern, repl, string, count=0, flags=0)
     
     ?:                  #tells the compiler it does not have to capture what is in that spot in our regular expression
+    \b                  #bunaries
+
+    #Always separed with groups. Use or |
+    #look out for patrons
+    #working is a good problem to keep it in mind
+    #Use validators module

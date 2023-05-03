@@ -18,18 +18,18 @@ def convert(s):
 
 def new_format(hrs,mins,am_pm):
     if am_pm == "PM":
-        if hrs == 12:
+        if int(hrs) == 12:
             new_hrs = 12
         else: 
             new_hrs = int(hrs) + 12
     else:
-        if hrs == 12:
-            new_hrs = 0
+        if int(hrs) == 12:
+            new_hrs = "00"
         else:
             new_hrs = int(hrs)
 
     if mins == None:
-        new_mins = 0
+        new_mins = "00"
         new_time_format = f"{new_hrs:02}:{new_mins:02}"
     else:
         new_time_format = f"{new_hrs:02}:{mins:02}"
