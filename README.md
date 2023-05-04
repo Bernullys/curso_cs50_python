@@ -414,5 +414,7 @@ Regular Expressions:
     #Another and better way of using classes and with instance methods using __init__
     #Now we are adding variables to objects (instance variables to objects).
     #A method is a function inside of a class.
+    #Using raise error with message.
+    #Printing directly the variable witch got the class but defaning __str__
 
 
