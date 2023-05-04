@@ -398,3 +398,21 @@ Regular Expressions:
     #look out for patrons
     #working is a good problem to keep it in mind
     #Use validators module
+
+
+
+    Object Oriented Programming
+
+    # a Tuple is like a list but inmutuble. And also is in parentesis.
+    # If I  return using [] it returns a list.
+
+    #classes allow you to invent your own data types in Python and give them a name.
+    #You declare a class and then you declare a variable = that class
+    #Then you add variable.xxx = xxxxx and so on.
+    #When you create a class you create an object.
+
+    #Another and better way of using classes and with instance methods using __init__
+    #Now we are adding variables to objects (instance variables to objects).
+    #A method is a function inside of a class.
+
+

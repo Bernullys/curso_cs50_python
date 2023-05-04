@@ -1,5 +1,7 @@
 class Student:
-    ...                 #this means later will be some code here
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
 
 def main():
     student = get_student()
@@ -7,9 +9,9 @@ def main():
 
 
 def get_student():
-    student = Student()     #declaring student. is like calling a function
-    student.name = input("Name: ")
-    student.house = input("House: ")
+    name = input("Name: ")
+    house = input("House: ")
+    student = Student(name, house)  #this is a constructor
     return student
 
 
