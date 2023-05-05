@@ -416,5 +416,5 @@ Regular Expressions:
     #A method is a function inside of a class.
     #Using raise error with message.
     #Printing directly the variable witch got the class but defaning __str__
-
+    #To implement methods you have to defined a function with at least self as an argument.
 
