@@ -1,9 +1,6 @@
 class Student:
     def __init__(self, name, house):
-        if not name:
-            raise ValueError("Name cannot be empty")
-        if house not in ["Chile", "Depto", "610"]:
-            raise ValueError("House must be Chile, Depto or 610")
+
         self.name = name
         self.house = house
 
@@ -12,11 +9,25 @@ class Student:
         return f"{self.name} from {self.house}"
 
     #Getter
+    @property
     def house(self):
-        return self.house
+        return self._house
     #Setter
+    @house.setter
     def house(self, house):
-        return self.house = house
+        if house not in ["Chile", "depto", "610"]:
+            raise ValueError("Invalid house")
+        self._house = house
+
+    
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("Name cannot be empty")
 
 
 def main():

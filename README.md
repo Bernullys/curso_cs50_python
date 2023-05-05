@@ -417,4 +417,7 @@ Regular Expressions:
     #Using raise error with message.
     #Printing directly the variable witch got the class but defaning __str__
     #To implement methods you have to defined a function with at least self as an argument.
+    #properties --- @properties
+    #Getter and Setter 
+    #You can't repeat the name of the function as the variables. Thats why for convenction you have to put an underscore in front of the instance variable's name.
 
