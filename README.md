@@ -421,3 +421,4 @@ Regular Expressions:
     #Getter and Setter 
     #You can't repeat the name of the function as the variables. Thats why for convenction you have to put an underscore in front of the instance variable's name.
 
+    #@classmethod
