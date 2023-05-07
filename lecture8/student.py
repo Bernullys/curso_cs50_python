@@ -1,17 +1,17 @@
 class Student:
     def __init__(self, name, house):
-
+        if not name:
+            raise ValueError('Name cannot be empty')
         self.name = name
         self.house = house
 
-    def __str__(self):
-        return f"{self.name} from {self.house}"
+class Professor:
+    def __init__(self, name, subject):
+        if not name:
+            raise ValueError('Name cannot be empty')
+        self.name = name
+        self.subject = subject
 
-    @classmethod
-    def get(cls):
-        name = input("Name: ")
-        house = input("House: ")
-        return cls(name, house)
 
 def main():
     student = Student.get()
