@@ -427,4 +427,7 @@ Regular Expressions:
     #Exist another decorators.
 
     #inheritance is whereby you can define multiple classes that somehow relate to one another.
-    #super().__init__() is a super class that can inheritance
+    #super().__init__() is a super class that can inheritance.
+
+    #operator overloading
+    
