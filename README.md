@@ -421,5 +421,5 @@ Regular Expressions:
     #Getter and Setter 
     #You can't repeat the name of the function as the variables. Thats why for convenction you have to put an underscore in front of the instance variable's name when setting.
 
-    #@classmethod instance methods.
+    #@classmethod
     #Using class variables, without defining __init__ neither calling the class but using it directly.
