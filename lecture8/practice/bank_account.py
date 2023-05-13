@@ -23,4 +23,4 @@ person.deposit(100)
 person.withdraw(50)
 for log in person.log:
     print(log)
-print(person.balance)
+    print(f"balance {person.balance}")
