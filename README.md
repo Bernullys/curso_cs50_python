@@ -41,6 +41,7 @@ Methods:
     str.rstrip()
     str.title()                             #capitalize the first letter of each word
     str.lower()
+    str.upper()
     str.casefold()
     str.replace("lo_que_sea", "por_otra_cosa_que_sea")
     var1, var2 = varx.split(":") //de una variable con una entrada dividida por un caracter los separa desde donde se ponga el caracter
@@ -53,6 +54,9 @@ Methods:
     str.isalpha()
     str.isalnum()
     str.removeprefix()                          #remove the begginning of a string
+    str.format()                                #to use with lists and strings (lookout documents)
+    str.join()                                  #to join the content of a list to a str
+    str.split("")                               #returns a list
 
 Shortcuts:
 
