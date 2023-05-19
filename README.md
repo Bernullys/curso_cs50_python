@@ -22,6 +22,8 @@ I'm going to put here notes of every clase and exercice of this course
     float()
     round(number,n)                         #round to n decimals       
     pow(x,n)                                #returns the power of x to the n
+    range()                                 #return  the range of the argumente
+    range(a, b)                             #return the range between a and b
 
     def main():
     def function():
@@ -30,10 +32,26 @@ I'm going to put here notes of every clase and exercice of this course
     if__name__=="__main__":
         main()
 
+    list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by item
     abs()                                       # retorna el valor absoluto de un numero
-    len()                                       # returns the length of the variable or list
+    len()                                       # returns the length of the variable or list or str
     sorted()                                    #ordena en orden alfabetico
     .append()                                   #is used with a for loop to make a list or in the right way to make a dict
+    .clear()                                    #clears the list
+    .copy()                                     #makes a copy of the list
+    .count()                                    #returns the number of times the item is in the list
+    .extend()                                   #adds the items of the list to the end of the list
+    .index()                                    #returns the index of the item
+    .insert(1, "X")                             #adds the item to the index. The first argument is the position index, the second is the item
+    .pop()                                      #removes the item from the list
+    .remove()                                   #removes the item from the list
+    .sort()                                     #sorts the list
+    .sort(reverse=True)                         #sorts the list reverse
+    .sort(key=lambda x: x.lower())              #sorts the list by the item
+    .reverse()                                  #reverses the list
+    max(a)                                      #return the maximum value of a list
+    min(a)                                      #returns the minimum value of a list
+
 
 Methods:
 
@@ -53,6 +71,13 @@ Methods:
     str.isalpha()
     str.isalnum()
     str.removeprefix()                          #remove the begginning of a string
+    str.removesuffix()                          #remove the end of a string
+    str.count()                                 #entrega el numero de veces que aparece la letra
+    str.find()                                  #entrega el indice de la letra en la cadena
+    str.rfind()                                 #entrega el indice de la letra en la cadena en orden inverso
+
+
+
 
 Shortcuts:
 
