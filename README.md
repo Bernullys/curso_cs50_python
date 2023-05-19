@@ -51,6 +51,8 @@ I'm going to put here notes of every clase and exercice of this course
     .reverse()                                  #reverses the list
     max(a)                                      #return the maximum value of a list
     min(a)                                      #returns the minimum value of a list
+    
+    .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
 
 
 Methods:
