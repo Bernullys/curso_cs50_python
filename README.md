@@ -51,6 +51,8 @@ I'm going to put here notes of every clase and exercice of this course
     .reverse()                                  #reverses the list
     max(a)                                      #return the maximum value of a list
     min(a)                                      #returns the minimum value of a list
+    
+    .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
 
 
 Methods:
@@ -72,20 +74,13 @@ Methods:
     str.isalpha()
     str.isalnum()
     str.removeprefix()                          #remove the begginning of a string
-<<<<<<< HEAD
     str.removesuffix()                          #remove the end of a string
     str.count()                                 #entrega el numero de veces que aparece la letra
     str.find()                                  #entrega el indice de la letra en la cadena
     str.rfind()                                 #entrega el indice de la letra en la cadena en orden inverso
-
-
-
-=======
     str.format()                                #to use with lists and strings (lookout documents)
     str.join()                                  #to join the content of a list to a str
     str.split("")                               #returns a list
->>>>>>> 40c9fcc372200b31a0ce1433b7ccaf7f0e99bcad
-
 Shortcuts:
 
     windows + .                                 #window of emojis 👌
