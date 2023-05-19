@@ -59,6 +59,7 @@ Methods:
     str.rstrip()
     str.title()                             #capitalize the first letter of each word
     str.lower()
+    str.upper()
     str.casefold()
     str.replace("lo_que_sea", "por_otra_cosa_que_sea")
     var1, var2 = varx.split(":") //de una variable con una entrada dividida por un caracter los separa desde donde se ponga el caracter
@@ -71,6 +72,7 @@ Methods:
     str.isalpha()
     str.isalnum()
     str.removeprefix()                          #remove the begginning of a string
+<<<<<<< HEAD
     str.removesuffix()                          #remove the end of a string
     str.count()                                 #entrega el numero de veces que aparece la letra
     str.find()                                  #entrega el indice de la letra en la cadena
@@ -78,6 +80,11 @@ Methods:
 
 
 
+=======
+    str.format()                                #to use with lists and strings (lookout documents)
+    str.join()                                  #to join the content of a list to a str
+    str.split("")                               #returns a list
+>>>>>>> 40c9fcc372200b31a0ce1433b7ccaf7f0e99bcad
 
 Shortcuts:
 
