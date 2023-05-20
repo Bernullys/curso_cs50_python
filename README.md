@@ -458,3 +458,45 @@ Regular Expressions:
 
     #operator overloading
     
+    class Class_name:
+        def __init__(self, param1, param2):                                             # .param1 and .param2 are attributes of this class
+            self._param1 = param1
+            self.param2 = param2
+        def __str__(self):
+            return f"{self.param1} + {self.param2} = {self.param1 + self.param2}"       # or whatever you wan to print when printing the class
+
+        @property                               # this is to block param1 attribute and can't be modified (getter)
+        def param1(self):
+            return self._param1
+        
+        @param1.setter                                                  # this is to set the value of that property only if validate that condition (setter)
+        def param1(self, param1):                                       
+            if param1 < 0:                                              # whatever condition
+                raise ValueError("param1 can't be negative")
+            self._param1 = param1
+
+
+    object_name = Class_name(xx, yy)
+    print(object_name)                              #it can be printed because the str method is declared
+
+
+    # Class method:
+
+    @classmethod
+    def funtion_name(cls, param1):
+        return cls.param1
+    
+    Class_name.funtion_name()
+
+
+    # Inheritance:
+
+    class Parent:
+        def __init__(self, param1,param2):
+            self.param1 = param1
+    class Son(Parent):
+        def __init__(self,param3):
+            super().__init__(param1, param2)
+            self.param3 = param3
+
+    son = Son(xx, yy, zz)
