@@ -3,6 +3,9 @@ I'm going to put here notes of every clase and exercice of this course
 
 ```py
 
+    # if the name of a variable is in capitals it means is a constant.
+    # even though you can change it is by design of python.
+
     print()
     print("\n")                             #Imprime una linea vacia
     print(end="")                           #Imprime y termina de una vez
@@ -32,8 +35,18 @@ I'm going to put here notes of every clase and exercice of this course
     if__name__=="__main__":
         main()
 
-    list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by item
+    # If a variable is declare outside of a function and you want to use it inside of a function you can use global:
+    global var
+
+Int Methods:
+
     abs()                                       # retorna el valor absoluto de un numero
+    range(n)                                    # provides back n values
+
+Lists Methods:
+
+    list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by item
+
     len()                                       # returns the length of the variable or list or str
     sorted()                                    #ordena en orden alfabetico
     .append()                                   #is used with a for loop to make a list or in the right way to make a dict
@@ -51,11 +64,13 @@ I'm going to put here notes of every clase and exercice of this course
     .reverse()                                  #reverses the list
     max(a)                                      #return the maximum value of a list
     min(a)                                      #returns the minimum value of a list
-    
+
+Dicts Methods:
+
     .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
 
 
-Methods:
+Strings Methods:
 
     str.strip()                             #remove whitespace from the str
     str.rstrip()
@@ -81,6 +96,38 @@ Methods:
     str.format()                                #to use with lists and strings (lookout documents)
     str.join()                                  #to join the content of a list to a str
     str.split("")                               #returns a list
+
+
+Tuples:
+
+    # Use tuples when your data cannot/should not change.
+    # Tuples are immutable.
+
+    tuples = ()                                #creates an empty tuple
+    tuples = (1,2,3)                           #creates a tuple with 3 values
+    tuples = "a", "b", "c"                     #creates a tuple with 3 values
+    # you can call a tuple using index like with lists
+    variable = (1, 2, 3)
+    a, b, c = variable                          #this will unpack a tuple
+    a, b, c = [1, 2, 3]
+    a, b, c = c, a, b                           # this will change the asignation
+    a, b, *c, d = [1, 2, 3, 4, 5, 6, 7]         #this will asigne the extras to c
+
+Sets:
+
+    # Use a set if you need uniqueness for the elements.
+
+    n_set = { 1, 2, 3, 4, 5}
+    printing a set will remove all the similar elements
+    n_set.add(7)
+    n_set.remove(3)
+    n_set.isdisjoint(n_set)                     #returns True or False if the sets are disjoint
+    # operations with sets:
+    set_one | set_two                           # will put together the elements that has no repet
+    set_one & set_two                           # will put together the elements that has all the repet
+    set_one - set_two                           # eliminara de set_one los que tenga iguales set_two
+    set_one ^ set_two                           # crea un set con los elementos que no se repiten
+
 Shortcuts:
 
     windows + .                                 #window of emojis 👌
@@ -89,7 +136,7 @@ Shortcuts:
 
 Math Operators:
 
-    + - * / %
+    + - * / % //
 
     +=
     -=
@@ -123,7 +170,6 @@ Conditionals:
 
 Loops:
 
-
     while condition :
 
     whille condition :
@@ -132,7 +178,7 @@ Loops:
 
     for condition:                              # for loops iterates through a list of items
 
-    range(n)                                    # provides back n values
+
 
 
     NOTA: me di cuenta de que si en una funcion se regresa solo True o solo False siempre se regresara ese booleano asi la condicion no se cumpla.
@@ -140,6 +186,11 @@ Loops:
 
 
 Lists:
+
+    # Whe to use a list:
+    # if you have a collection of data that does not need random access.
+    # When you need a simple, iterable collection that is modified frequently.
+
 
     var_lists = [0, 1, 2, ..., n]               # list are the equivalent of arrays in javascript
 
@@ -150,6 +201,14 @@ Lists:
         check if the variable is not in the list
 
 Dicts:
+
+    # Whe to use a dictionary:
+    # When you need a logical association between a key:value pair.
+    # When you need fast lookup for your data, based on a custom key.
+    # When your data is being constantly modified.
+    # When you need to iterate over the data.
+    # Dictionaries are mutable.
+
 
     dict or dictionaries are a data structure that allows you to associete keys with values
 
@@ -174,7 +233,7 @@ Dicts:
     for var in var_dict:
         print(var[var1], var[varX], var[varX.1], sep=", ")       # Esto imprimiria las keys con sus valores deparados por coma y espacio
 
-    at grocery.py in lecture3 is how to create a dict and how to print it
+    # at grocery.py in lecture3 is how to create a dict and how to print it
 
 Slices:
 
@@ -268,7 +327,9 @@ Libraries or Modules in Python: Always check the documents to know how the speci
     re.match
     re.fullmatch
 
-    import validators             #to validate specifics inputs
+    import validators                                   #to validate specifics inputs
+
+    mypy                                                #helps noticing the type of a variable executing mypy file_name.py 
 
 Unit Test:
 
