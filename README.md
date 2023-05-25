@@ -331,6 +331,8 @@ Libraries or Modules in Python: Always check the documents to know how the speci
 
     mypy                                                #helps noticing the type of a variable executing mypy file_name.py 
 
+    import argparse                                     # To manage argumentes from the user like sys but diferent.
+
 Unit Test:
 
     pytest                                              #is a installed package
@@ -561,3 +563,36 @@ Regular Expressions:
             self.param3 = param3
 
     son = Son(xx, yy, zz)
+
+
+
+    List comprehensions:
+
+    # Examples:
+    a_list = [i**2 for i in range(5)]
+    b_list = [i for i in range(5) if i % 2 == 0]
+    c_list = [i for i in range(5) if i % 2 == 0 if i > 2]
+    d_list = [i for i in range(5) if i % 2 == 0 if i > 2 if i < 3]
+    e_list = [arg.upper() for arg in words]
+
+
+
+    Lambdas:
+    #Are used when passing a simple function as an argument to another function.
+    (lambda x: 2**x, 5)3
+
+
+
+    Map:
+    #Operate on list or similar objects called iterables.
+    # Examples:
+    result = list(map(lambda x: x+5, nums)) #where nums is a list. It will return each element of the list + 5.
+    
+    
+
+    Filter:
+    #Filters an iterable by leaving only the items that match a condition (also called a predicate).
+    # Examples:
+    result = list(filter(lambda x: x > 5, nums)) #where nums is a list. It will return only the elements of the list that are greater than 5.
+    
+
