@@ -596,3 +596,15 @@ Regular Expressions:
     result = list(filter(lambda x: x > 5, nums)) #where nums is a list. It will return only the elements of the list that are greater than 5.
     
 
+
+    Generators:
+    #Generators are lazy (they do not evaluate the expressions until they are needed).
+    #Are a type of iterable like list or tuples, but they don't allow indexing, but they can be iterated through for loops.
+    #Uses the key word yield
+    #yield iterated and can be stored in a list using de function list.
+    # Example:
+    def numbers(x):
+        for i in range(x):
+            if i % 2 == 0:
+                yield i
+    print(list(numbers(10)))
