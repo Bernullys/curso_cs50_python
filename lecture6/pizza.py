@@ -27,5 +27,3 @@ except FileNotFoundError:
 #outputs a table with ASCII format
 
 print(tabulate(menu, headers="firstrow", tablefmt="grid"))
-
-#tabulate works with the module of csv, otherwise the impresion is not correct

@@ -300,7 +300,7 @@ Libraries or Modules in Python: Always check the documents to know how the speci
     json.dumps(variablex.json(), indent=2)              #to make the output more readable
 
     import inflect
-    p = inflect.engine()                                #this to lines come together
+    p = inflect.engine()                                #this two lines come together
 
     import emoji
     emoji.emojze(str)
