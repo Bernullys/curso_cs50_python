@@ -16,7 +16,7 @@ I'm going to put here notes of every clase and exercice of this course
     print("hello, \"friend\"")              #esto solucionaria -- el backslash siempre rompe el significado del caracter en este lenguaje
     print("hello, 'friend'")                #esto seria otra solucion pero menos usada
 
-    print(f"str ${variable}")               #str que queramos
+    print(f"str {variable}")               #str que queramos
     print(f"{number:,})                     #print a number with 1,000 format
     print(f"{float:.nf})                    #print a float with n decimals
 
