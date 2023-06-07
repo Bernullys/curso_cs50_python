@@ -78,6 +78,7 @@ Strings Methods:
     str.lower()
     str.upper()
     str.casefold()
+    str.capitalize()
     str.replace("lo_que_sea", "por_otra_cosa_que_sea")
     var1, var2 = varx.split(":") //de una variable con una entrada dividida por un caracter los separa desde donde se ponga el caracter
     str.startswith()
