@@ -49,7 +49,7 @@ Lists Methods:
 
     len()                                       # returns the length of the variable or list or str
     sorted()                                    #ordena en orden alfabetico
-    .append()                                   #is used with a for loop to make a list or in the right way to make a dict
+    .append()                                   #is used with a for or while loop to make a list or in the right way to make a dict. The list has to be outside the loop.
     .clear()                                    #clears the list
     .copy()                                     #makes a copy of the list
     .count()                                    #returns the number of times the item is in the list
