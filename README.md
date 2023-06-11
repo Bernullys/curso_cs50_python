@@ -334,6 +334,8 @@ Libraries or Modules in Python: Always check the documents to know how the speci
 
     import argparse                                     # To manage argumentes from the user like sys but diferent.
 
+     import csv
+
 Unit Test:
 
     pytest                                              #is a installed package
