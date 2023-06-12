@@ -490,6 +490,7 @@ Regular Expressions:
     #Always separed with groups. Use or |
     #look out for patrons
     #working is a good problem to keep it in mind
+    #Always watch the cs50 classes
     #Use validators module
 
 
