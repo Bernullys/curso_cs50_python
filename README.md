@@ -530,9 +530,9 @@ Regular Expressions:
             self._param1 = param1
             self.param2 = param2
         def __str__(self):
-            return f"{self.param1} + {self.param2} = {self.param1 + self.param2}"       # or whatever you wan to print when printing the class
+            return f"{self.param1} + {self.param2} = {self.param1 + self.param2}"       # or whatever you want to print when printing the class
 
-        @property                               # this is to block param1 attribute and can't be modified (getter)
+        @property                                                       # this is to block param1 attribute and can't be modified (getter)
         def param1(self):
             return self._param1
         
@@ -544,7 +544,7 @@ Regular Expressions:
 
 
     object_name = Class_name(xx, yy)
-    print(object_name)                              #it can be printed because the str method is declared
+    print(object_name)                                                    #it can be printed because the str method is declared
 
 
     # Class method:
@@ -567,6 +567,57 @@ Regular Expressions:
             self.param3 = param3
 
     son = Son(xx, yy, zz)
+
+
+    # Explicación de atributos y propiedades por chatgpt:
+
+    En las clases, tanto los atributos como las propiedades son elementos que pueden almacenar información y comportamiento relacionado. Sin embargo, hay una distinción conceptual entre ellos.
+
+    Los atributos son variables que se declaran dentro de una clase y almacenan datos específicos para cada instancia de la clase. Estos atributos definen el estado o las características de un objeto. Los atributos pueden ser variables de instancia (asociadas a una instancia específica de la clase) o variables de clase (compartidas por todas las instancias de la clase). Se definen utilizando asignaciones dentro de la clase.
+
+    Aquí hay un ejemplo que muestra atributos en una clase Person:
+
+    class Person:
+        def __init__(self, name, age):
+            self.name = name  # Atributo de instancia
+            self.age = age  # Atributo de instancia
+
+        species = "Human"  # Atributo de clase
+
+    person1 = Person("Alice", 25)
+    print(person1.name)  # Acceso al atributo de instancia
+    print(person1.age)  # Acceso al atributo de instancia
+    print(Person.species)  # Acceso al atributo de clase
+
+    En contraste, las propiedades proporcionan una forma de acceder y modificar valores asociados a un objeto, pero de manera controlada y con una lógica adicional. Se definen utilizando decoradores o métodos especiales llamados getter y setter. Las propiedades permiten realizar operaciones personalizadas durante el acceso o la modificación de un valor.
+
+    Aquí hay un ejemplo que muestra el uso de propiedades en una clase Circle para el radio:
+
+    class Circle:
+        def __init__(self, radius):
+            self._radius = radius
+
+        @property
+        def radius(self):
+            return self._radius
+
+        @radius.setter
+        def radius(self, value):
+            if value > 0:
+                self._radius = value
+            else:
+                raise ValueError("Radius must be a positive value.")
+
+    circle = Circle(5)
+    print(circle.radius)  # Acceso a la propiedad
+
+    circle.radius = 10  # Modificación de la propiedad
+    print(circle.radius)  # Acceso a la propiedad después de la modificación
+
+
+    En este ejemplo, la propiedad radius permite acceder y modificar el atributo _radius de la clase Circle, pero al mismo tiempo realiza una validación para asegurarse de que el valor del radio sea mayor que cero.
+
+    En resumen, los atributos son variables que almacenan datos específicos para cada instancia de una clase, mientras que las propiedades proporcionan métodos personalizados para acceder y modificar valores asociados a un objeto. Ambos conceptos son importantes en la programación orientada a objetos y se utilizan para modelar el estado y el comportamiento de los objetos en Python.
 
 
 
