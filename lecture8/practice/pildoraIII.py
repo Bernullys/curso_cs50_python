@@ -19,6 +19,7 @@ class Coche():
 
 coche1 = Coche(10, 5, 4, True)
 coche1.ruedas = 9
+coche1.largo_chasis = 15
 print(coche1.encender(True))
 coche1.estado()
 coche1.largo_chasis = 500

@@ -1,6 +1,8 @@
 class Jar:
 
     def __init__(self, capacity=12, size=0):
+        if capacity < 0:
+            raise ValueError
         self._capacity = capacity
         self._size = size
 
@@ -20,8 +22,8 @@ class Jar:
 
     def withdraw(self, n):
         self.substract = n
-        if self._size - self.substract > 0:
-            self._size -= self.substract
+        if self._size >= n:
+            self._size = self._size - n
         else:
             raise ValueError("Jar has not that many!")
 
@@ -40,8 +42,14 @@ def main():
 
     jar = Jar()
     jar.deposit(10)
+    print(jar)
     jar.withdraw(4)
     print(jar)
+    print(f'Capacity is {jar.capacity}')
+    print(jar.add)
+    print(jar.substract)
+    print(jar._size)
+
 
 if __name__=="__main__":
     main()

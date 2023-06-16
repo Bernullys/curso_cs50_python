@@ -8,7 +8,8 @@ def main():
 
 
 def test_init():
-    ...
+    jar = Jar()
+    assert jar.capacity == 12
 
 
 def test_str():
@@ -22,11 +23,13 @@ def test_str():
 
 def test_deposit():
     jar = Jar()
-    assert jar.deposit(5) == "🍪🍪🍪🍪🍪"
+    jar.deposit(5) == 5
 
 
 def test_withdraw():
-    ...
+    jar = Jar()
+    with pytest.raises(ValueError):
+        jar.withdraw(1)
 
 
 

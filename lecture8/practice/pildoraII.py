@@ -1,6 +1,6 @@
 class Coche():
     def __init__(self):                 #Constructor
-        self.largo_chasis = 250              #Estado inicial
+        self.largo_chasis = 250         #Estado inicial
         self.ancho_chasis = 120
         self.ruedas = 4
         self.enmarcha = False
@@ -24,3 +24,4 @@ coche1.estado()
 coche2 = Coche()
 print(coche2.encender(False))
 coche2.estado()
+print(coche2.arrancar)
