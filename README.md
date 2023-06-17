@@ -68,6 +68,25 @@ Lists Methods:
 Dicts Methods:
 
     .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
+    .value()                                    #returns the value of a key in a dict
+
+Manipulating list of dict:
+
+    To access a specific value in a dictionary, you can use indexing or the get() method.
+    Example: my_list[0]['key'] or my_list[0].get('key').
+
+    You can modify values in a dictionary by assigning a new value to a specific key.
+    Example: my_list[0]['key'] = new_value.
+
+    You can append a new dictionary to the list using the append() method.
+    Example: my_list.append({'key': value}).
+
+    You can remove a dictionary from the list using the remove() method or a list comprehension.
+    Example: my_list.remove({'key': value}) or my_list = [item for item in my_list if item['key'] != value].
+
+    You can use list comprehensions or the filter() function to filter dictionaries based on certain conditions.
+    Example using list comprehension: filtered_list = [item for item in my_list if item['key'] == value].
+    Example using filter() function: filtered_list = list(filter(lambda item: item['key'] == value, my_list)).
 
 
 Strings Methods:
