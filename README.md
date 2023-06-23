@@ -19,6 +19,7 @@ I'm going to put here notes of every clase and exercice of this course
     print(f"str {variable}")               #str que queramos
     print(f"{number:,})                     #print a number with 1,000 format
     print(f"{float:.nf})                    #print a float with n decimals
+    print(f"{float:,.nf})                   #print a convination of the above two
 
     input()
     int()
