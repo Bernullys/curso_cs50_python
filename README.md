@@ -450,7 +450,7 @@ File I/O:
         for row in reader:
             separated_name = row["name"].split(",")
             name_last_house.append({"first_name": separated_name[1], "last_name": separated_name[0], "house": row["house"]})
-    with open(sys.argv[2], 'w') as file:
+    with open(sys.argv[2], 'w') as file: 
         fieldnames = ['first_name', 'last_name', 'house']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
