@@ -46,7 +46,7 @@ Int Methods:
 
 Lists Methods:
 
-    list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by item
+    list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by c times
 
     len()                                       # returns the length of the variable or list or str
     sorted()                                    #ordena en orden alfabetico
@@ -65,6 +65,8 @@ Lists Methods:
     .reverse()                                  #reverses the list
     max(a)                                      #return the maximum value of a list
     min(a)                                      #returns the minimum value of a list
+    x = [[0, 1, 2],
+         [9, 8, 7]]                              #x[row][colum]
 
 Dicts Methods:
 
@@ -208,7 +210,7 @@ Loops:
 
 Lists:
 
-    # Whe to use a list:
+    # When to use a list:
     # if you have a collection of data that does not need random access.
     # When you need a simple, iterable collection that is modified frequently.
 
