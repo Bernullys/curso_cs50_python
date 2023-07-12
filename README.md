@@ -72,6 +72,9 @@ Dicts Methods:
 
     .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
     .value()                                    #returns the value of a key in a dict
+    .update()                                   #to sum a dict into other.
+    .pop(key_name)                              #to delete a key-value from a dict.
+    del dict_name[key_name]                     #to delete a key-value from a dict.
 
 Manipulating list of dict:
 
@@ -257,6 +260,11 @@ Dicts:
         print(var[var1], var[varX], var[varX.1], sep=", ")       # Esto imprimiria las keys con sus valores deparados por coma y espacio
 
     # at grocery.py in lecture3 is how to create a dict and how to print it
+
+    dict_name[var_key] = var_valeu              # this is how you can add key, value to a dict.
+
+    sum_of_dicts = {**dict1, **dict2}           #this is to sum up two dicts.
+    dict1.update(dict2)                         #this is to sum up two dicts.
 
 Slices:
 
