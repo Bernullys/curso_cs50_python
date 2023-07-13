@@ -63,16 +63,10 @@ Lists Methods:
     .sort(reverse=True)                         #sorts the list reverse
     .sort(key=lambda x: x.lower())              #sorts the list by the item
     .reverse()                                  #reverses the list
-<<<<<<< HEAD
-    .max(a)                                      #return the maximum value of a list
-    .min(a)                                      #returns the minimum value of a list
-
-=======
     max(a)                                      #return the maximum value of a list
     min(a)                                      #returns the minimum value of a list
     x = [[0, 1, 2],
          [9, 8, 7]]                              #x[row][colum]
->>>>>>> 73f3487409ffe15b948b5dbfb86db34673a613f6
 
 Dicts Methods:
 
