@@ -2,20 +2,43 @@
 #### Video Demo:
 #### Description: more than 300 words describing the project
 
-Quiero hacer una aplicacion que me sirva para tomar los pedidos en un bar por mesa o por persona individual.
-Una vez se pida la cuenta, se debe imprimir un pdf con la cuenta con un formato elegante y con el logo de la empresa.
+
+Quiero hacer una aplicacion que me sirva para tomar los pedidos en un bar por mesa o por persona individual. Ademas de:
+
+
+El menu de productos va a ser un dict que contenga el nombre del producto y el precio.
+Debe existir una manera de ingresar productos al menu. Confirmar si el producto no existe en el menu antes de ingresarlo. Si existe se debe avisar.
+Debe existir una manera de eliminar productos del menu. Confirmar que el producto exista y que lo deseas eliminar.
+Debe existir una manera de cambiarle el precio a los productos.
+Para esto debe existir un usuario administrador que pueda ingresar utilizando una clave. 
+
+
+La funcion principal de la aplicacion es que se vayan anotando los pedidos en la cuenta de cada persona o mesa y al final se imprima la cuenta final.
 Debe agregar el impuesto y la propina por separado.
-Ademas, debe guardarse la cuenta en una carpeta aparte. 
-Tambien se deben ir sumando los valores de la cuenta para tener el valor de ventas totales por dia (por lo tanto se debe tener un control de fechas). 
-Se debe tambien tener un registro de el tipo de billete o monedas que utilizo para pagar con el fin de saber al final de cada día cuantos billetes y monedas hay de cada uno. O por otra parte si realizo el pago con tarjeta de credito, debito o hizo una transferencia bancaria.
-Debe existir una manera de ingresar o eliminar productos al menu, como cambiarle el precio tambien. Para esto debe existir un usuario administrador que pueda ingresar utilizando una clave. 
+Se debe confirmar si la cuenta se pago cuando se pida.
+Una vez se pague la cuenta, se debe imprimir un pdf con la cuenta con un formato elegante y con el logo de la empresa.
+Ademas, debe guardarse la cuenta en una carpeta aparte en formato csv.
 
 
-Primero: tengo que crear una clase que me agregue keys y values a un dict. TODO.
+Tambien se deben ir sumando los valores de las cuentas para tener el valor de ventas totales por dia.
+Por lo tanto se debe tener un control de fechas y hora actual en que se pidio una cuenta.
+A esto se le agrega que vaya sumando los productos que se van vendiendo para tener un registro cuantos se vendio de cada uno.
 
-Crear una funcion que me agregue producto con su costo al menu. 
+
+Se debe tambien tener un registro si se pago en efectivo, con tarjeta de credito, debito o hizo una transferencia bancaria.
+
+
+
+
+
+Crear una a una cada actividad para completar la funcionalidad requerida final.
+
+
+
+Crear una funcion que me agregue producto con su costo al menu. Check :)
+
 Chequear que ya no exista en el menu. Y si existe, preguntar si quiere cambiar el costo. 
-Y cuando termine preguntar si quiere seguir agregando o parar.
+Y cuando termine preguntar si quiere seguir agregando o parar. 
 
 Crear una funcion que elimine productos del menu. 
 Chequear si existe en el menu, sino dar mensaje de que no existe, que si quiere probar de nuevo o imprimir el dict con los productos actuales.

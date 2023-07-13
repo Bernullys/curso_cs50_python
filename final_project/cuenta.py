@@ -1,23 +1,32 @@
-class Cuenta:
-    def __init__(self, acumulado):
-        self.acumolado = acumulado
-
-
-    def pedidos(self):
-        ...
-
-
 products = {
-
-    "Burger": "$5",
-    "Pizza": "$8",
-    "Fries": "$3",
-    "Drink": "$2",
+    "Burger": 5,
+    "Pizza": 8,
+    "Fries": 3,
+    "Drink": 2,
 }
 
-Bernardo = Cuenta(0)
+class Tap:
 
-for key, value in products.items():
-    setattr(Bernardo, key, value)
+    def __init__(self):
+        self.deb = 0
+        self.orders = []
 
-print(Bernardo.Burger)
+    def consumption(self, order):
+        self.orders.append(order)
+        self.deb += products[order]
+
+    def bill(self, tax, tip):
+        self.tax = tax
+        self.tip = tip
+        taxes = self.deb*self.tax/100
+        tips = self.deb*self.tip/100
+        total = self.deb + taxes + tips
+        print (total)
+
+        for item in self.orders:
+            print(f"{item} ------ {products[item]}")
+
+Bernardo = Tap()
+Bernardo.consumption("Burger")
+Bernardo.consumption("Pizza")
+Bernardo.bill(10, 10)
