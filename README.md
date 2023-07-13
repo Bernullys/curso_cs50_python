@@ -19,6 +19,7 @@ I'm going to put here notes of every clase and exercice of this course
     print(f"str {variable}")               #str que queramos
     print(f"{number:,})                     #print a number with 1,000 format
     print(f"{float:.nf})                    #print a float with n decimals
+    print(f"{float:,.nf})                   #print a convination of the above two
 
     input()
     int()
@@ -45,7 +46,7 @@ Int Methods:
 
 Lists Methods:
 
-    list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by item
+    list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by c times
 
     .len()                                       # returns the length of the variable or list or str or dict.
     .sorted()                                    #ordena en orden alfabetico
@@ -62,13 +63,42 @@ Lists Methods:
     .sort(reverse=True)                         #sorts the list reverse
     .sort(key=lambda x: x.lower())              #sorts the list by the item
     .reverse()                                  #reverses the list
+<<<<<<< HEAD
     .max(a)                                      #return the maximum value of a list
     .min(a)                                      #returns the minimum value of a list
 
+=======
+    max(a)                                      #return the maximum value of a list
+    min(a)                                      #returns the minimum value of a list
+    x = [[0, 1, 2],
+         [9, 8, 7]]                              #x[row][colum]
+>>>>>>> 73f3487409ffe15b948b5dbfb86db34673a613f6
 
 Dicts Methods:
 
     .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
+    .value()                                    #returns the value of a key in a dict
+    .update()                                   #to sum a dict into other.
+    .pop(key_name)                              #to delete a key-value from a dict.
+    del dict_name[key_name]                     #to delete a key-value from a dict.
+
+Manipulating list of dict:
+
+    To access a specific value in a dictionary, you can use indexing or the get() method.
+    Example: my_list[0]['key'] or my_list[0].get('key').
+
+    You can modify values in a dictionary by assigning a new value to a specific key.
+    Example: my_list[0]['key'] = new_value.
+
+    You can append a new dictionary to the list using the append() method.
+    Example: my_list.append({'key': value}).
+
+    You can remove a dictionary from the list using the remove() method or a list comprehension.
+    Example: my_list.remove({'key': value}) or my_list = [item for item in my_list if item['key'] != value].
+
+    You can use list comprehensions or the filter() function to filter dictionaries based on certain conditions.
+    Example using list comprehension: filtered_list = [item for item in my_list if item['key'] == value].
+    Example using filter() function: filtered_list = list(filter(lambda item: item['key'] == value, my_list)).
 
 
 Strings Methods:
@@ -189,7 +219,7 @@ Loops:
 
 Lists:
 
-    # Whe to use a list:
+    # When to use a list:
     # if you have a collection of data that does not need random access.
     # When you need a simple, iterable collection that is modified frequently.
 
@@ -236,6 +266,11 @@ Dicts:
         print(var[var1], var[varX], var[varX.1], sep=", ")       # Esto imprimiria las keys con sus valores deparados por coma y espacio
 
     # at grocery.py in lecture3 is how to create a dict and how to print it
+
+    dict_name[var_key] = var_valeu              # this is how you can add key, value to a dict.
+
+    sum_of_dicts = {**dict1, **dict2}           #this is to sum up two dicts.
+    dict1.update(dict2)                         #this is to sum up two dicts.
 
 Slices:
 
@@ -431,7 +466,7 @@ File I/O:
         for row in reader:
             separated_name = row["name"].split(",")
             name_last_house.append({"first_name": separated_name[1], "last_name": separated_name[0], "house": row["house"]})
-    with open(sys.argv[2], 'w') as file:
+    with open(sys.argv[2], 'w') as file: 
         fieldnames = ['first_name', 'last_name', 'house']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
