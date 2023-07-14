@@ -68,7 +68,8 @@ Lists Methods:
     x = [[0, 1, 2],
          [9, 8, 7]]                              #x[row][colum]
 
-Dicts Methods:
+Dicts Methods:                                  #keys can not be itarable like list or dicts
+                                                #to check for a key in a dict we can use in and not in
 
     .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
     .value()                                    #returns the value of a key in a dict
@@ -128,10 +129,11 @@ Tuples:
 
     # Use tuples when your data cannot/should not change.
     # Tuples are immutable.
+    # Thar means you can not reassign a value in a tuple like you can with list and dicts.
 
     tuples = ()                                #creates an empty tuple
     tuples = (1,2,3)                           #creates a tuple with 3 values
-    tuples = "a", "b", "c"                     #creates a tuple with 3 values
+    tuples = "a", "b", "c"                     #creates a tuple with 3 values without parentheses
     # you can call a tuple using index like with lists
     variable = (1, 2, 3)
     a, b, c = variable                          #this will unpack a tuple
@@ -142,6 +144,10 @@ Tuples:
 Sets:
 
     # Use a set if you need uniqueness for the elements.
+    # Sets can not be indexed.
+    # Its elements can be check with in and not in.
+    # Sets can not contain duplicate elements.
+    # len() can be use in sets.
 
     n_set = { 1, 2, 3, 4, 5}
     printing a set will remove all the similar elements
