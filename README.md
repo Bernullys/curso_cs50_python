@@ -35,6 +35,13 @@ I'm going to put here notes of every clase and exercice of this course
     funtion()
     if__name__=="__main__":
         main()
+    def function_name(other_function, argument):    #this is functional programming.
+    def pure_function(x, y):                        #this is a pure function.
+        temp = x + 2*y
+        return temp / (2*x + y)
+    some_list = []                                  #this is an impure function
+    def impure(arg):                                #because it will change the state of some_list
+        some_list.append(arg)
 
     # If a variable is declare outside of a function and you want to use it inside of a function you can use global:
     global var
@@ -48,8 +55,8 @@ Lists Methods:
 
     list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by c times
 
-    len()                                       # returns the length of the variable or list or str
-    sorted()                                    #ordena en orden alfabetico
+    .len()                                       # returns the length of the variable or list or str
+    .sorted()                                    #ordena en orden alfabetico
     .append()                                   #is used with a for or while loop to make a list or in the right way to make a dict. The list has to be outside the loop.
     .clear()                                    #clears the list
     .copy()                                     #makes a copy of the list
@@ -63,8 +70,8 @@ Lists Methods:
     .sort(reverse=True)                         #sorts the list reverse
     .sort(key=lambda x: x.lower())              #sorts the list by the item
     .reverse()                                  #reverses the list
-    max(a)                                      #return the maximum value of a list
-    min(a)                                      #returns the minimum value of a list
+    .max(a)                                      #return the maximum value of a list
+    .min(a)                                      #returns the minimum value of a list
     x = [[0, 1, 2],
          [9, 8, 7]]                              #x[row][colum]
 
@@ -663,13 +670,19 @@ Regular Expressions:
 
 
     Lambdas:
+    #known as anonymous.
     #Are used when passing a simple function as an argument to another function.
-    (lambda x: 2**x, 5)3
+    #syntax: lambda - argument - : - expression to evaluate and return - parameter.
+
+    my_function(lambda x: 2**x, 5)
+
+    #lambdas can only do things that require  single expression
 
 
 
     Map:
     #Operate on list or similar objects called iterables.
+    #Takes a function and an iterable as arguments, and returns a new iterable with the function applied to each argument.
     # Examples:
     result = list(map(lambda x: x+5, nums)) #where nums is a list. It will return each element of the list + 5.
     
