@@ -30,9 +30,9 @@ I'm going to put here notes of every clase and exercice of this course
     range(a, b)                             #return the range between a and b
 
     def main():
-    def function():
+    def function(arguments):
     return
-    funtion()
+    funtion(parameters)
     if__name__=="__main__":
         main()
     def function_name(other_function, argument):    #this is functional programming.
@@ -55,6 +55,8 @@ Lists Methods:
 
     list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by c times
 
+    .len()                                       # returns the length of the variable or list or str or dict.
+    .sorted()                                    #ordena en orden alfabetico
     .len()                                       # returns the length of the variable or list or str
     .sorted()                                    #ordena en orden alfabetico
     .append()                                   #is used with a for or while loop to make a list or in the right way to make a dict. The list has to be outside the loop.
@@ -126,9 +128,9 @@ Strings Methods:
     str.count()                                 #entrega el numero de veces que aparece la letra
     str.find()                                  #entrega el indice de la letra en la cadena
     str.rfind()                                 #entrega el indice de la letra en la cadena en orden inverso
-    str.format()                                #to use with lists and strings (lookout documents)
+    str.format()                                #to use with lists and strings (lookout documents). - Is use to print the index items of a list or str in {}
     str.join()                                  #to join the content of a list to a str
-    str.split("")                               #returns a list
+    str.split("")                               #returns a list from a str
 
 
 Tuples:
