@@ -707,10 +707,41 @@ Regular Expressions:
     #Generators are lazy (they do not evaluate the expressions until they are needed).
     #Are a type of iterable like list or tuples, but they don't allow indexing, but they can be iterated through for loops.
     #Uses the key word yield
-    #yield iterated and can be stored in a list using de function list.
-    # Example:
+    #are better than lists because don't have memory restrictions.
+    #yield iterated and can be stored in a list using the function list.
+    # Example: the function behaves like an iterator.
     def numbers(x):
         for i in range(x):
             if i % 2 == 0:
-                yield i
+                yield i         # yield replace return in a function
     print(list(numbers(10)))
+
+
+
+    Decorators:
+
+    #Decorators modify functions using other functions.
+    #This is ideal when you need to extend the functionality of functions that you don't want to modify.
+    #Example:
+    def decor(func):
+        def wrap():
+            print("---------")
+            func()
+            print("---------")
+        return wrap
+
+    @decor
+    def print_text():
+        print("Hello world!")
+    
+    print_text()
+
+
+
+    Recursion:
+
+    #Use in functional programming.
+    #functions calling themselves.
+    #recursion functions needs a base case. A case that dosen't involve any further calls to that function.
+    #recursion can also be indirect. One function can call another function and another and make a circule.
+    #I don't understand - Check the exercices in practice.
