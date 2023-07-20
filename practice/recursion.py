@@ -41,3 +41,20 @@ def fib(x):
     else:
         return fib(x-1) + fib(x-2)
 print(fib(4))
+
+
+#########################################3
+
+def power(x, y):
+    if y == 0:
+        return 1
+    else:
+        return x * power(x, y-1)
+
+print (power(2, 3))
+
+
+################
+a = (lambda x: x **2) (7)
+
+print(a)

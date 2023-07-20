@@ -682,7 +682,9 @@ Regular Expressions:
     #Are used when passing a simple function as an argument to another function.
     #syntax: lambda - argument - : - expression to evaluate and return - parameter.
 
-    my_function(lambda x: 2**x, 5)
+    my_function(lambda x: 2**x, 5) # this is defining a function.
+
+   a = (lambda x: 2**x) (5) # this is using it right away.
 
     #lambdas can only do things that require  single expression
 
@@ -745,3 +747,15 @@ Regular Expressions:
     #recursion functions needs a base case. A case that dosen't involve any further calls to that function.
     #recursion can also be indirect. One function can call another function and another and make a circule.
     #I don't understand - Check the exercices in practice.
+
+
+
+    *args
+
+    #Using *args as a function parameter enables you to pass an arbitrary number of arguments to that function.
+    #The arguments are then accesible as the tuple args in the body of the function.
+
+    **kwargs
+
+    #key word arguments allows you to handle named arguments that you have not defined in advance.
+    #The keyword arguments return a dictionary in which the keys are the arguments names, and the values are the argument values.
