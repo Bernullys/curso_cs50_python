@@ -542,8 +542,8 @@ Regular Expressions:
 
     Object Oriented Programming
 
-    # a Tuple is like a list but inmutuble. And also is in parentesis.
-    # If I  return using [] it returns a list.
+
+    #First notes:
 
     #classes allow you to invent your own data types in Python and give them a name.
     #You declare a class and then you declare a variable = that class
@@ -569,6 +569,12 @@ Regular Expressions:
     #super().__init__() is a super class that can inheritance.
 
     #operator overloading
+
+    # Notes from Sololearn:
+        #Classes are created using the keyword class and an indented block, which contains class methods (methods are functions inside a class).
+        #When creating a class you are making an instance (object).
+        #The __init__ method is the most important method in a class. This is called when an instance of the class is created. The __init__ method is called the class constructor.
+        #All methods must have self as their first parameter, although it isn't explicity passed, Python adds the self argument to the list for you; you don't need to include it when you call the methods. Whiting a method definition, self refers to the instance calling the method.
     
     class Class_name:
         def __init__(self, param1, param2):                                             # .param1 and .param2 are attributes of this class
