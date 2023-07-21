@@ -575,7 +575,55 @@ Regular Expressions:
         #When creating a class you are making an instance (object).
         #The __init__ method is the most important method in a class. This is called when an instance of the class is created. The __init__ method is called the class constructor.
         #All methods must have self as their first parameter, although it isn't explicity passed, Python adds the self argument to the list for you; you don't need to include it when you call the methods. Whiting a method definition, self refers to the instance calling the method.
-    
+
+        #Inheritance
+            #To inherit a class from another class, put the superclass name in parentheses after the class name.
+            #A class that inherit from another class is called a subclass.
+            #A class that is inherit from is called a superclass.
+            #If the super and sub classes had the same method, the subclass will be the one.
+            super() #is a function that refers to the parent class. It can be used to find the method with a certain name in an object's superclass.
+
+        #Magic Methods
+            #Are special methods which hable double underscores at the beginning and end of their names. Also known as dunders.
+            #They are used to create functionality that can't be represent as a normal method.
+            #Magic methods for common operators: (There are equivalent r methods for all magic methods)
+
+                __add__ (+)
+                __sub__ (-)
+                __truediv__ (/)
+                __floordiv__ (//)
+                __mod__ (%)
+                __pow__ (**)
+                __and__ (&)
+                __xor__ (^)
+                __or__ (|)
+
+                #the expression x + y is translated to x.__add__(y).
+                #However, if x hasn't implement __add__, and x and y are two different types, then y.__radd__(x) is called.
+
+            #Magic methods for comparisons:
+                __lt__ (<)
+                __le__ (<==)
+                __eq__ (==)
+                __ne__ (!=)
+                __gt__ (>)
+                __ge__ (>=)
+
+                #if __ne__ is not implemented, it returns the opposite of __eq__
+
+            #Magic methods for making classes act like containers:
+                __len__ #for len()
+                __getitem__ #for indexing
+                __setitem__ #for assigning to indexed values
+                __delitem__ #for deleting indexed values
+                __iter__ #for iteration over objects (e.g., in for loops)
+                __contains__ #for in
+
+
+
+
+
+
     class Class_name:
         def __init__(self, param1, param2):                                             # .param1 and .param2 are attributes of this class
             self._param1 = param1
