@@ -1,4 +1,4 @@
-class Queue:
+class Queue:                                    #Example of wealky private methods:
     def __init__(self, contents):
         self._hiddentlist = list(contents)
 
@@ -8,7 +8,7 @@ class Queue:
     def pop(self):
         return self._hiddentlist.pop(-1)
     
-    def __repr__(self):
+    def __repr__(self): #magic method of str representation.
         return "Queue({})".format(self._hiddentlist)
 
 queue = Queue([1, 2, 3])
@@ -26,7 +26,7 @@ print(queue._hiddentlist)
 
 ###################################################
 
-class Spam:
+class Spam:                                     #Example of Strongly private method.
     __egg = 7
     def print_egg(self):
         print(self.__egg)
@@ -39,7 +39,7 @@ print(s._Spam__egg)  #asi se puede acceder, incluyendo _ y el nombre de la clase
 
 ####################################################
 
-class Player:
+class Player:                               
     def __init__(self, name, lives):
         self.name = name
         self._lives = lives

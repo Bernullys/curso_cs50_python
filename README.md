@@ -619,6 +619,22 @@ Regular Expressions:
                 __iter__ #for iteration over objects (e.g., in for loops)
                 __contains__ #for in
 
+        # Data Hiding: (encapsulation)
+            #Weakly private methods and attributes have a single underscore at the beginning. This signals that they are private.
+            #Strongly private methos and attibutes have a double underscore at the beginning (mangled). The method __privatemethod of class Spam could be accessed externally with _Spam__privatemethod.
+
+        # Class Methods:
+            #Class methods are called by a class, which is passed to the cls parameter of the method.
+            #A common use of these are factory methods, which instatiate an instance of a class, using different parameters than those usually passed to the class constructor.
+            #Class methods are marked with a classmethod decorator.
+
+        #Static Methods:
+            #Are similar to class methods, except they don't receive any additional arguments; they are identical to normal functions thet belong to a class.
+            #Static methods are marked with the staticmethod decorator.
+            #Static methods behave like plain functions, except for the fact that you can call them from an instance of the class.
+
+
+
 
 
 
@@ -813,3 +829,4 @@ Regular Expressions:
 
     #key word arguments allows you to handle named arguments that you have not defined in advance.
     #The keyword arguments return a dictionary in which the keys are the arguments names, and the values are the argument values.
+
