@@ -629,11 +629,16 @@ Regular Expressions:
             #Class methods are marked with a classmethod decorator.
 
         #Static Methods:
-            #Are similar to class methods, except they don't receive any additional arguments; they are identical to normal functions thet belong to a class.
+            #Are similar to class methods, except they don't receive any additional arguments; they are identical to normal functions that belong to a class.
             #Static methods are marked with the staticmethod decorator.
             #Static methods behave like plain functions, except for the fact that you can call them from an instance of the class.
 
-
+        #Properties:
+            #Provide a way of customizing access to instance attributes. They are created by putting the property decorator above a method, which means when the instance attribute with the same name as the method is accessed, the method will be called instead. One common use of a property is to make an attribute read-only.
+            #Properties can also be set by defining setter/getter functions:
+                #The setter function sets the corresponding property's value.
+                #The getter gets the value.
+                #To define a setter or a getter, you need to use a decorator of the same name as the property, followed by a dot and the setter keyword.
 
 
 
