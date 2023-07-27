@@ -120,7 +120,7 @@ Strings Methods:
     str.endswith()
     str.isupper()                               #returns True or False if the str is upper
     str.islower()                               #returns True or False if the str is lower
-    str.isdigt()                                #entrega True or False si el que el str contiene solo digitos no simbolos o puntuación.
+    str.isdigt()                                #entrega True or False si es que el str contiene solo digitos no simbolos o puntuación.
     str.index()                                 #entrega el indice de la letra del string - la letra va dentro de los parentesis con comillas
     str.isalpha()
     str.isalnum()
@@ -289,6 +289,21 @@ Slices:
 
 
 Exceptions:
+
+    #They occur when something goes wrong, due to incorrect code or input.
+    #Defferent exceptions are raised for differents reasons like:
+        ImportError #an import fails.
+        IndexError #a list is indexed with an out-of-range number.
+        NameError #an unknown variable is used.
+        SyntaxError #the code can't be parsed properly.
+        TypeError #a function is called on a value of an inappropriate type.
+        ValueError #a function es called on a value of the correct type, but with an inappropriate value.
+        ZeroDivisionError
+        OSError
+
+    #A try statement can have a multiple different except blocks to handle different exceptions.
+    #Also multiple exceptions can also be put into a single except block using parentheses, to have the except block handle all of them.
+    #An except statement without any exceptions specified will cath all errors. These should be used sparingly, as they can catch unexpected errors and hide programming mistakes. Is useful when dealing with user input.
 
     try:
         code...
