@@ -58,7 +58,6 @@ Lists Methods:
     .len()                                       # returns the length of the variable or list or str or dict.
     .sorted()                                    #ordena en orden alfabetico
     .len()                                       # returns the length of the variable or list or str
-    .sorted()                                    #ordena en orden alfabetico
     .append()                                   #is used with a for or while loop to make a list or in the right way to make a dict. The list has to be outside the loop.
     .clear()                                    #clears the list
     .copy()                                     #makes a copy of the list
