@@ -302,7 +302,13 @@ Exceptions:
 
     #A try statement can have a multiple different except blocks to handle different exceptions.
     #Also multiple exceptions can also be put into a single except block using parentheses, to have the except block handle all of them.
-    #An except statement without any exceptions specified will cath all errors. These should be used sparingly, as they can catch unexpected errors and hide programming mistakes. Is useful when dealing with user input.
+    #An except statement without any exceptions specified will catch all errors. These should be used sparingly, as they can catch unexpected errors and hide programming mistakes. Is useful when dealing with user input.
+    #After a try/except statement, a finally block can follow. It will execute after the try/except block, no matter if an exception occurred or not.
+    #The finally block is useful, for example, when working with files and resources: it can be used to make sure files or resources are closed or released regardless of whether an exception occurs. Its like an else but is going to be execute with or without exception.
+    #The code whithin else it only executed if no error occurs in the try statement.
+    #You can raise an exception: raise Exception()
+
+    #Afert all of this, we can make more code after exceptions, using else or finally.
 
     try:
         code...
@@ -419,9 +425,31 @@ Unit Test:
 
 File I/O:
 
-    open("file_name.extension", "w")
-    .write()
-    .close()
+    #When opening a file: the second argument is to specified the mode:
+        # "r" means read mode, which is the default.
+        # "w" means write mode, for rewriting the contents of a file.
+        # "a" means append mode, for adding new content to the end of the file.
+        # "b" adding a b to the others, opens it in binary mode. (images and sound files).
+
+    # To read only a certain amount of a file (characters), you can provide the number of bytes to read as an argument to the read function. Each ASCII character is 1 byte. Example:
+        file = open("a_file.txt")
+        n = int(input())
+        print(file.read(n))
+        file.close()
+    # To retrieve each line in a file, you can use readlines() method to return a list in which each element is a line in the file. Is used with a for loop.
+
+    # The write() method returns the number of bytes written to a file, if successful. Example:
+        msg = "Hello"
+        file = open("newfile.txt", "w")
+        size_written = file.write(msg)
+        print(size_written)
+        file.close()
+    # To write something other than a string, it needs to be converted to a string first.
+
+
+    open("file_name.extension", "w")    #The argument of the open function is the path to the file. If the path is the same as the python file, you can use its name.
+    file_name.write()
+    file_name.close()
     open("file_name.extension", "a")
     open("file_name.extension", "r")
 
