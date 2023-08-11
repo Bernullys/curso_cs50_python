@@ -26,7 +26,3 @@ class Tap:
         for item in self.orders:
             print(f"{item} ------ {products[item]}")
 
-Bernardo = Tap()
-Bernardo.consumption("Burger")
-Bernardo.consumption("Pizza")
-Bernardo.bill(10, 10)

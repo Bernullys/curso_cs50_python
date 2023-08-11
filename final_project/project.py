@@ -1,3 +1,5 @@
+from cuenta import Tap
+
 def main():
 
     products = {
@@ -47,6 +49,11 @@ def delete_products_to_menu(menu_products):
 def function_three():
     ...
 
+
+bernard = Tap()
+bernard.consumption("Fries")
+bernard.consumption("Burger")
+bernard.bill(10, 10)
 
 
 
