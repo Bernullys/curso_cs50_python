@@ -6,6 +6,7 @@
 Quiero hacer una aplicacion que me sirva para tomar los pedidos en un bar-restaurant por mesa o por persona individual. Ademas de:
 
 El menu de productos va a ser un dict que contenga el nombre del producto y el precio.
+Debe existir un stock inicial y se debe ir actualizando segun sea el caso de agregar o de sacar.
 Debe existir una manera de ingresar productos al menu. Confirmar si el producto no existe en el menu antes de ingresarlo. Si existe se debe avisar.
 Debe existir una manera de eliminar productos del menu. Confirmar que el producto exista y que lo deseas eliminar.
 Debe existir una manera de cambiarle el precio a los productos.

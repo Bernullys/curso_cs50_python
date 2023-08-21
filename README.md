@@ -16,7 +16,7 @@ I'm going to put here notes of every clase and exercice of this course
     print("hello, \"friend\"")              #esto solucionaria -- el backslash siempre rompe el significado del caracter en este lenguaje
     print("hello, 'friend'")                #esto seria otra solucion pero menos usada
 
-    print(f"str {variable}")               #str que queramos
+    print(f"str {variable}")                #str que queramos
     print(f"{number:,})                     #print a number with 1,000 format
     print(f"{float:.nf})                    #print a float with n decimals
     print(f"{float:,.nf})                   #print a convination of the above two
@@ -55,9 +55,8 @@ Lists Methods:
 
     list(range(a, b, c))                        #returns a list from a to b without including b and uses c to pass item by c times
 
-    .len()                                       # returns the length of the variable or list or str or dict.
-    .sorted()                                    #ordena en orden alfabetico
-    .len()                                       # returns the length of the variable or list or str
+    .len()                                      # returns the length of the variable or list or str or dict.
+    .sorted()                                   #ordena en orden alfabetico
     .append()                                   #is used with a for or while loop to make a list or in the right way to make a dict. The list has to be outside the loop.
     .clear()                                    #clears the list
     .copy()                                     #makes a copy of the list
@@ -71,14 +70,13 @@ Lists Methods:
     .sort(reverse=True)                         #sorts the list reverse
     .sort(key=lambda x: x.lower())              #sorts the list by the item
     .reverse()                                  #reverses the list
-    .max(a)                                      #return the maximum value of a list
-    .min(a)                                      #returns the minimum value of a list
+    .max(a)                                     #return the maximum value of a list
+    .min(a)                                     #returns the minimum value of a list
     x = [[0, 1, 2],
          [9, 8, 7]]                              #x[row][colum]
 
 Dicts Methods:                                  #keys can not be itarable like list or dicts
                                                 #to check for a key in a dict we can use in and not in
-
     .get(a,b)                                   #returns a value of a key a or if not in that dict returns b
     .value()                                    #returns the value of a key in a dict
     .update()                                   #to sum a dict into other.
@@ -106,15 +104,15 @@ Manipulating list of dict:
 
 Strings Methods:
 
-    str.strip()                             #remove whitespace from the str
+    str.strip()                                 #remove whitespace from the str
     str.rstrip()
-    str.title()                             #capitalize the first letter of each word
+    str.title()                                 #capitalize the first letter of each word
     str.lower()
     str.upper()
     str.casefold()
     str.capitalize()
     str.replace("lo_que_sea", "por_otra_cosa_que_sea")
-    var1, var2 = varx.split(":") //de una variable con una entrada dividida por un caracter los separa desde donde se ponga el caracter
+    var1, var2 = varx.split(":")
     str.startswith()
     str.endswith()
     str.isupper()                               #returns True or False if the str is upper
@@ -137,17 +135,17 @@ Tuples:
 
     # Use tuples when your data cannot/should not change.
     # Tuples are immutable.
-    # Thar means you can not reassign a value in a tuple like you can with list and dicts.
+    # That means you can not reassign a value in a tuple like you can with list and dicts.
 
     tuples = ()                                #creates an empty tuple
     tuples = (1,2,3)                           #creates a tuple with 3 values
     tuples = "a", "b", "c"                     #creates a tuple with 3 values without parentheses
     # you can call a tuple using index like with lists
     variable = (1, 2, 3)
-    a, b, c = variable                          #this will unpack a tuple
+    a, b, c = variable                         #this will unpack a tuple
     a, b, c = [1, 2, 3]
-    a, b, c = c, a, b                           # this will change the asignation
-    a, b, *c, d = [1, 2, 3, 4, 5, 6, 7]         #this will asigne the extras to c
+    a, b, c = c, a, b                          # this will change the asignation
+    a, b, *c, d = [1, 2, 3, 4, 5, 6, 7]        #this will asigne the extras to c
 
 Sets:
 
@@ -290,13 +288,13 @@ Slices:
 Exceptions:
 
     #They occur when something goes wrong, due to incorrect code or input.
-    #Defferent exceptions are raised for differents reasons like:
+    #Different exceptions are raised for differents reasons like:
         ImportError #an import fails.
         IndexError #a list is indexed with an out-of-range number.
         NameError #an unknown variable is used.
         SyntaxError #the code can't be parsed properly.
         TypeError #a function is called on a value of an inappropriate type.
-        ValueError #a function es called on a value of the correct type, but with an inappropriate value.
+        ValueError #a function is called on a value of the correct type, but with an inappropriate value.
         ZeroDivisionError
         OSError
 
@@ -399,7 +397,7 @@ Libraries or Modules in Python: Always check the documents to know how the speci
 
     import argparse                                     # To manage argumentes from the user like sys but diferent.
 
-     import csv
+    import csv
 
 Unit Test:
 
