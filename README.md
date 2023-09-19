@@ -21,6 +21,7 @@ I'm going to put here notes of every clase and exercice of this course
     print(f"{float:.nf})                    #print a float with n decimals
     print(f"{float:,.nf})                   #print a convination of the above two
 
+    type(variable)                          #print the type of the variable
     input()
     int()
     float()
@@ -31,10 +32,21 @@ I'm going to put here notes of every clase and exercice of this course
 
     def main():
     def function(arguments):
-    return
-    funtion(parameters)
+    return result1, result2, any_variable   #these will return a tuple
+    function(parameters=1)                  #default parameter
+    function(parameter1=12, parameter2=13, parameter3=14)   #three default parameters
+    #If I want to send only one or two argumentes, it has to type the name of the parameter.
+
     if__name__=="__main__":
         main()
+
+    import csv
+    def read_csv(arg):
+        xxxxxxxx
+    if __name__=="__main__":
+        read_csv(parameter)
+
+
     def function_name(other_function, argument):    #this is functional programming.
     def pure_function(x, y):                        #this is a pure function.
         temp = x + 2*y
@@ -50,6 +62,7 @@ Int Methods:
 
     abs()                                       # retorna el valor absoluto de un numero
     range(n)                                    # provides back n values
+    format(n, ".2g")                            #transform a integer or a float into a str with 2 decimals
 
 Lists Methods:
 
@@ -82,6 +95,9 @@ Dicts Methods:                                  #keys can not be itarable like l
     .update()                                   #to sum a dict into other.
     .pop(key_name)                              #to delete a key-value from a dict.
     del dict_name[key_name]                     #to delete a key-value from a dict.
+    dict_name.items()                           #returns tuples of key, vlue
+    dict_name.keys()                            #returns a list of keys
+    dict_name.values()                          #returns a list of values
 
 Manipulating list of dict:
 
@@ -160,6 +176,9 @@ Sets:
     n_set.add(7)
     n_set.remove(3)
     n_set.isdisjoint(n_set)                     #returns True or False if the sets are disjoint
+    n_set.update({12, 13, 14})                  #add those elements
+    n_set.discard({12}) 
+    n_set.clear()                               #clears all the elements
     # operations with sets:
     set_one | set_two                           # will put together the elements that has no repet
     set_one & set_two                           # will put together the elements that has all the repet
@@ -174,8 +193,10 @@ Shortcuts:
 
 Math Operators:
 
-    + - * / % //
-
+    + - * / 
+    % 
+    // 
+    **
     +=
     -=
 
@@ -222,6 +243,13 @@ Loops:
     NOTA: me di cuenta de que si en una funcion se regresa solo True o solo False siempre se regresara ese booleano asi la condicion no se cumpla.
     Por otro lado tengo que tener presente de que si se quiere probar varias condiciones, se pueden probar las condiciones falsas menos una.
 
+Iterables:
+
+    my_iter = iter(range(1, 10))
+    print(my_iter)                  #this will print the space in memory
+    print(next(my_iter))            #this will print the first iteration (1)
+    #this is helpfull because save memory if you want to iterate only in certains elements.
+    #if next reach the range, then will send an exception
 
 Lists:
 
@@ -399,6 +427,15 @@ Libraries or Modules in Python: Always check the documents to know how the speci
 
     import csv
 
+    import matplotlib                                   
+
+    #Own modules:
+    #Create functions in other file and then import that file.
+    #to call those functions you have to type: file_name.function_name(arguments)
+    #Or the way I learn in cs50: from file_name import function_name
+
+    #When making package we have to create a __init__.py file to initialized all modules. Also this package has to be inside of the same directory.
+
 Unit Test:
 
     pytest                                              #is a installed package
@@ -428,6 +465,8 @@ File I/O:
         # "w" means write mode, for rewriting the contents of a file.
         # "a" means append mode, for adding new content to the end of the file.
         # "b" adding a b to the others, opens it in binary mode. (images and sound files).
+        # "r+" read and write.
+        # "w+" write and read but will rewrite all the file.
 
     # To read only a certain amount of a file (characters), you can provide the number of bytes to read as an argument to the read function. Each ASCII character is 1 byte. Example:
         file = open("a_file.txt")
@@ -781,7 +820,9 @@ Regular Expressions:
 
 
 
-    List comprehensions:
+    List comprehensions: #to generate lists from a list, tuple or set
+
+    [element for element in iterable condition]
 
     # Examples:
     a_list = [i**2 for i in range(5)]
@@ -791,11 +832,34 @@ Regular Expressions:
     e_list = [arg.upper() for arg in words]
 
 
+    Dicts comprehensions:
+
+    {key:value for var in iterable condition}
+    dict2 = {i: i*2 for i in range(1,11)}
+
+    #using one list
+    countries = ["ve", "cl", "usa", "ca"]
+    population2 = {country: random.randint(100000, 10000000000) for country in countries}
+
+    #using two lists
+    countries = ["ve", "cl", "usa", "ca"]
+    countries_range = [1, 2, 3, 4]
+    list(zip(countries, countries_range))   #this output a list of tuples
+    lived = {country: country_range for(country, country_range) in zip(countries, countries_range)}
+
+    #using condition
+    result = { country: population for (country, population) in population2.items() if population > 50000}
+
+    #from a string
+    text = "Hello my name is Bernardo"
+    unique = {c: c.upper() for c in text if c in "aeiou"}
+
 
     Lambdas:
     #known as anonymous.
     #Are used when passing a simple function as an argument to another function.
     #syntax: lambda - argument - : - expression to evaluate and return - parameter.
+    #function_name = lambda param1, param2: expression
 
     my_function(lambda x: 2**x, 5) # this is defining a function.
 
@@ -808,8 +872,20 @@ Regular Expressions:
     Map:
     #Operate on list or similar objects called iterables.
     #Takes a function and an iterable as arguments, and returns a new iterable with the function applied to each argument.
+    #Create a new list
     # Examples:
     result = list(map(lambda x: x+5, nums)) #where nums is a list. It will return each element of the list + 5.
+    #Modifyng a dict:
+    def add_somthing(item):
+        item["somthing"] = item["existing"] * 2
+        return item
+    new_dict = list(map(add_something, items))
+    #but if you don't want to change the original dict:
+    def add_somthing(item):
+        new_item = item.copy()
+        new_item["somthing"] = new_item["existing"] * 2
+        return new_item
+    new_dict = list(map(add_something, items))
     
     
 
@@ -817,7 +893,44 @@ Regular Expressions:
     #Filters an iterable by leaving only the items that match a condition (also called a predicate).
     # Examples:
     result = list(filter(lambda x: x > 5, nums)) #where nums is a list. It will return only the elements of the list that are greater than 5.
-    
+
+    matches = [
+        {
+            'home_team': 'Bolivia',
+            'away_team': 'Uruguay',
+            'home_team_score': 3,
+            'away_team_score': 1,
+            'home_team_result': 'Win'
+        },
+        {
+            'home_team': 'Brazil',
+            'away_team': 'Mexico',
+            'home_team_score': 1,
+            'away_team_score': 1,
+            'home_team_result': 'Draw'
+        },
+        {
+            'home_team': 'Ecuador',
+            'away_team': 'Venezuela',
+            'home_team_score': 0,
+            'away_team_score': 5,
+            'home_team_result': 'Win'
+        },
+    ]
+    new_list = list(filter(lambda item: item["home_team_result"] == "Win", matches))
+
+
+    Reduce:
+    #Reduce a list to a only one value
+    import functools
+    numbers = [1, 2, 3, 4]
+    result = functools.reduce(lambda x,y: x+y, numbers) #this is equal to 10
+    result = functools.reduce(lambda counter, item)
+
+
+
+        
+
 
 
     Generators:
@@ -863,6 +976,16 @@ Regular Expressions:
     #recursion can also be indirect. One function can call another function and another and make a circule.
     #I don't understand - Check the exercices in practice.
 
+
+    Higher order function:
+
+    def increment(x):
+        return x + 1
+
+    def h_o_f(x, func):
+        return x + func(x)
+    
+    result = h_o_f(2, increment)
 
 
     *args

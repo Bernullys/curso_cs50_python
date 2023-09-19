@@ -1,23 +1,23 @@
-a1 = ["arp", "live", "strong"]
+a1 = ["arp", "live", "strong", "live"]
 a2 = ["livaly", "alive", "harp", "sharp", "armstrong"]
 
-a1_lenght = len(a1)
+r = list(filter(lambda x: x in a2, a1))
 
-# a1i va a ser la cuenta de los elementos en la lista a1
+new_a1 = list(set(a1))
+print(new_a1)
 
-a1i = 0
-a2i = 0
+are_in = []
 
-print(a1[a1i])
-print(a2[a2i])
+for a in new_a1:
+    for b in a2:
+        if a in b:
+            are_in.append(a)
+            break
 
-for letters_in_a1_elements in a1[a1i]: #arp
-    a1_a1i_lenght = len(a1[a1i]) #3
-    first_letter_in_a1_elements = letters_in_a1_elements[0] #a
-    for letters_in_a2_element in a2[a2i]: #lively
-        if letters_in_a2_element == first_letter_in_a1_elements: # l == a      i == a 
-            #first_coincidance = a2[a2i].index(letters_in_a2_elements)
-            print("esta")
-        else:
-            print("No esta")
-a1i += 1
+print(sorted(are_in))
+
+
+############### Some codewards solutions ######################################
+
+def in_array(a1, a2):
+    return sorted({sub for sub in a1 if any(sub in s for s in a2)})
