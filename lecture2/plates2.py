@@ -11,14 +11,14 @@ def is_valid(s):
             return False
     if s[0].isalpha() == False or s[1].isalpha() == False:
         return False
-    i = 0
-    while i < len(s):
-        if s[i].isalpha() == False:
-            if s[i] == "0":
+    for char in s:
+        if char.isdigit():
+            index = s.index(char)
+            if s[index:].isdigit() and char != 0:
+                return True
+            else:
                 return False
-            else: 
-                break
-        i += 1
+    return True
     
     marks = [".", " ", ",", ";", "!", "¡"]
     for m in s:
