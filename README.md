@@ -663,7 +663,7 @@ Regular Expressions:
             super() #is a function that refers to the parent class. It can be used to find the method with a certain name in an object's superclass.
 
         #Magic Methods
-            #Are special methods which hable double underscores at the beginning and end of their names. Also known as dunders.
+            #Are special methods which has double underscores at the beginning and end of their names. Also known as dunders.
             #They are used to create functionality that can't be represent as a normal method.
             #Magic methods for common operators: (There are equivalent r methods for all magic methods)
 
