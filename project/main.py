@@ -1,32 +1,38 @@
-menu = {
-    "hamburger": 30,
-    "coke": 10,
-    "fries": 15
+import sys
+import time
+from bill import Bill
+
+options = {
+    "Show the menu": 1,
+    "Initialize a bill": 2,
+    "Print the bill by customer": 3,
+    "Confirm paiment": 4,
+    "Save bill in pdf": 5,
+    "Add a new product to the menu": 6,
+    "Delete a product from the menu": 7,
+    "Show stock": 8,
+    "Add stock": 9,
+    "Change the price of a product": 10,
+    "Check today's sell": 11
 }
 
-class Bill:
-    def __init__(self):
-        self.items = []
-        self.amount = 0
+def main():
     
-    def description(self, items):
-        self.items.append(items)
-        self.amount += menu[items]
-
-    def tap(self, taxes, tips):
-        tax = self.amount*taxes/100
-        tip = self.amount*tips/100
-        total = self.amount + tax + tip
-        for item in self.items:
-            print(f"{item}  {self.amount}")
-        print(tax)
-        print(tip)
-        print(total)
+    presentation()
+    selection()
 
 
+def selection():
+    time.sleep(1.5)
+    print("Select your number option")
+    option_selected = input("")
 
-ber = Bill()
-ber.description("hamburger")
-#print(ber.items)
-#print(ber.amount)
-ber.tap(10, 10)
+def presentation():
+    print("Welcome to the Bar Restaurant")
+    for o in options:
+       time.sleep(1.5)
+       print(f"Select option: {options[o]} {o}")
+
+
+if __name__== "__main__":
+  main()
