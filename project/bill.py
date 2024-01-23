@@ -3,7 +3,7 @@ menu = {
     "coke": 10,
     "fries": 15
 }
-
+ 
 class Bill:
     def __init__(self):
         self.items = []

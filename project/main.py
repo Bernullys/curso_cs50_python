@@ -1,5 +1,6 @@
 import sys
 import time
+import csv
 from bill import Bill
 
 options = {
@@ -19,19 +20,31 @@ options = {
 def main():
     
     presentation()
-    selection()
+    selected_option = selection()
 
+    if selected_option == "1":
+       show_menu()
 
-def selection():
-    time.sleep(1.5)
-    print("Select your number option")
-    option_selected = input("")
 
 def presentation():
     print("Welcome to the Bar Restaurant")
     for o in options:
-       time.sleep(1.5)
+       time.sleep(0.5)
        print(f"Select option: {options[o]} {o}")
+
+def selection():
+    time.sleep(0.5)
+    print("Select your number option")
+    return input("")
+
+def show_menu():
+   menu = []
+   with open ("menu.csv") as csv_menu:
+    reader = csv.reader(csv_menu)
+    for row in reader:
+        menu.append({"item": row[0], "price": row[1]})
+    for m in menu:
+       print(f"{m['item']} Price:{m['price']}")
 
 
 if __name__== "__main__":
