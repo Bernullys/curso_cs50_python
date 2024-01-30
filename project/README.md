@@ -1,6 +1,6 @@
 # Project title: __BADR__:"__BAR__"
 
-# I need to maje a demostration video.
+# I need to make a demostration video.
 
 # This descriptions need to hace at least 300 words describing the project.
 

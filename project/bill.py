@@ -1,3 +1,5 @@
+import csv
+
 menu = {
     "hamburger": 30,
     "coke": 10,
@@ -5,7 +7,8 @@ menu = {
 }
  
 class Bill:
-    def __init__(self):
+    def __init__(self, custumer_name):
+        self.custumer_name = custumer_name
         self.items = []
         self.amount = 0
     
@@ -23,5 +26,14 @@ class Bill:
         print(tip)
         print(total)
 
+
+def show_menu(csv_file):
+   menu = []
+   with open (csv_file) as csv_menu:
+    reader = csv.reader(csv_menu)
+    for row in reader:
+        menu.append({"item": row[0], "price": row[1]})
+    for m in menu:
+       print(f"{m['item']}  {m['price']}")
 
 
