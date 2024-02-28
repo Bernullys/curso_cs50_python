@@ -53,7 +53,7 @@ def presentation():
 
 def selection():
     time.sleep(0.5)
-    print("Select your number option")
+    print("Select your option number")
     return input("")
 
 

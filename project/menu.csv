@@ -1,6 +1,6 @@
-Item,Price
-Burger,$13.50
-Pizza,$16.95
-Fries,$14.75
-Soda,$15.95
-Coffe,$18.50
+item,price
+Burger,13.50
+Pizza,16.95
+Fries,14.75
+Soda,15.95
+Coffe,18.50

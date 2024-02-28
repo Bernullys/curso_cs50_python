@@ -2,10 +2,10 @@
 
 # I need to make a demostration video.
 
-# This descriptions need to hace at least 300 words describing the project.
+# This descriptions need to have at least 300 words describing the project.
 
 # I want to make an application that its main porpouse is to take the bar restaurant bill by costumer.
-# The menu is going to be into a csv file with the description of each product and its price. This menu will be display any time with styles.
+# The menu is going to be into a csv file with the description of each product, its amount and its price. This menu will be display any time with styles.
 # We need a file where we got the stock of each product. We are  going to add a functionallity wich can add and take out products.
 # Functionallity: we can add new products to the stock file. It should check if the product already exists.
 # We can delete products of the stock file. It shoud check if the product exist, and if you really want to delete it.

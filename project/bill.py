@@ -1,11 +1,18 @@
 import csv
 
-menu = {
-    "hamburger": 30,
-    "coke": 10,
-    "fries": 15
-}
+menu = {}
+with open ("./menu.csv") as csv_menu:
+    reader = csv.DictReader(csv_menu)
+    for row in reader:
+        menu[row["item"]] = float(row["price"])
+
+#using this dictionary I can have acces to the price of any item by name
+
+
+
+print(menu)
  
+
 class Bill:
     def __init__(self, custumer_name):
         self.custumer_name = custumer_name
@@ -35,5 +42,3 @@ def show_menu(csv_file):
         menu.append({"item": row[0], "price": row[1]})
     for m in menu:
        print(f"{m['item']}  {m['price']}")
-
-
