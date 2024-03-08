@@ -22,7 +22,7 @@ options = {
 
 def main():
     
-    #in this list we will store all the coustumers bill.
+    #in this list we will store all the coustumers bill stancies.
     custumers = []
     n = 0   #n is to initial
     
@@ -42,18 +42,18 @@ def main():
             while is_ordering == "yes":
                 custumers[n-1].order(input(f"{custumer_name} tell us your order: "))
                 is_ordering = input(f"{custumer_name} Do you want another item? ")
-        elif  selected_option == "3":
+        elif  selected_option == "3":   #This option prints the lenght of the list of custumers and then sweep the list to show each customer with its index.
             print(f"Now we have {len(custumers)} actives. Those are:")
             for index, c in enumerate(custumers):
                 print(f"Custumer {index + 1}: {c.custumer_name}")
 
-        elif selected_option == "4":
+        elif selected_option == "4":    #This option ask for the customer number and then it shows the bill of that customer
             check_custumer = input("Custumer name: ")
             for custumer in custumers:
                 if custumer.custumer_name == check_custumer:
                     custumer.tap(10)
         
-        elif selected_option == "5":
+        elif selected_option == "5":    #This option is to add item(s) to an existin customer's bill. 
             check_existing_custumer = input("Which custumer do you want to add an item? ")
             for i, c in enumerate(custumers):
                 if c.custumer_name == check_existing_custumer:
