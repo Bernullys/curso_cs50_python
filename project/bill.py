@@ -20,6 +20,14 @@ class Bill:
         self.items.append(items)
         self.amount += menu[items]
 
+        #This part is to save every order into a csv file so in case of closing the app, the  orders will still remain saved.
+        #Now I want to add the date and hour of each order........
+        name = self.custumer_name
+        price = self.amount
+        with open ("./current_bills.csv", "a") as file:
+            writer = csv.DictWriter(file, fieldnames= ["custumer_name","items", "price"])
+            writer.writerow({"custumer_name": name, "items": items, "price": price})
+
     def tap(self, taxes):
         tax = self.amount*taxes/100
         tip = self.amount*int(input("Persent of tip: "))/100
