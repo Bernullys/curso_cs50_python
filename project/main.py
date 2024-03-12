@@ -11,15 +11,15 @@ options = {
     "Check active customers": 3,
     "Print the bill by customer": 4,
     "Add item to an active customer": 5,
-    "Confirm paiment and Save bill in a pdf into a different folder": 6,
-    #At the same time this will take off the orders of that specific customer out of current_bills.csv
+    "Confirm paiment and Save bill in a pdf into a different folder": 6, #Once a bill has been paid, the customer must be take out of the custumers list, and their items out of current_bills.csv. Also create a pdf with a invoice.
     "Add a new product to the menu": 7,
     "Delete a product from the menu": 8,
     "Show stock": 9,
     "Add or Delete stock": 10,
     "Change the price of a product": 11,
     "Check today's sell": 12,
-    "Quit": 13
+    "Quit": 13,
+    #Would be cool if I can check the amount in bitcoins currency
 }
 
 def main():

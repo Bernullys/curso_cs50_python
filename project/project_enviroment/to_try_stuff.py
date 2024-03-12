@@ -1,4 +1,5 @@
 import csv
+import time
 
 menu_optional = {
     "fries": 12,
@@ -26,11 +27,17 @@ for me in menu_optional_two:
 
 print("#######################################################################")
 
-custumer_name = "Bernardo"
-item = "Soda"
-price = 12
+# custumer_name = "Bernardo"
+# item = "Soda"
+# price = 12
 
-with open ("../current_bills.csv", "a") as file:
-    writer = csv.DictWriter(file, fieldnames=["custumer_name", "item", "price"])
-    writer.writeheader()
-    writer.writerow({"custumer_name": custumer_name, "item": item, "price": price})
+# with open ("../current_bills.csv", "a") as file:
+#     writer = csv.DictWriter(file, fieldnames=["custumer_name", "item", "price"])
+#     writer.writeheader()
+#     writer.writerow({"custumer_name": custumer_name, "item": item, "price": price})
+
+print("##################################################################################")
+
+actual_time = time.asctime()
+
+print(actual_time)
