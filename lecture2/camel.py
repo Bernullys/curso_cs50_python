@@ -15,16 +15,19 @@ def main():
 
 def convert_name_camelCase_to_snake_case(camel_case_name):
 
-    if camel_case_name.islower() == True:
-        return camel_case_name
+    sanake_kase = ""
 
     for letter in camel_case_name:
         if letter.isupper() == True:
-            a, b = camel_case_name.split(letter)
+            if len(sanake_kase) > 0:
+                to_lower = letter.lower()
+                sanake_kase += "_" + to_lower
+            else:
+                sanake_kase += letter.lower()
+        else:
+            sanake_kase += letter.lower()
 
-            c = a + "_" + letter.lower() + b
-
-            return c
+    return sanake_kase
 
 res = main()
 

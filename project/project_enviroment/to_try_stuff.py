@@ -1,6 +1,5 @@
 import csv
 import time
-import fpdf
 
 menu_optional = {
     "fries": 12,
