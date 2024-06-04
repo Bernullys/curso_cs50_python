@@ -21,8 +21,10 @@ import csv
 # bill_print = PDF()
 # bill_print.add_page()
 
-with open("./current_bills.csv", encoding="utf8") as csv_file:
-    data = list(csv.reader(csv_file, delimiter=","))
+with open("./current_bills.csv", "r") as csv_file:
+    data = list(csv.reader(csv_file))
+    for row in data:
+        invoice_costumer = [row for row in data if row[0] == "Ber"]
 
 pdf = FPDF()
 pdf.set_font("helvetica", size=14)
@@ -40,7 +42,7 @@ with pdf.table(
     text_align=("LEFT", "CENTER", "RIGHT", "RIGHT"),
     width=160,
 ) as table:
-    for data_row in data:
+    for data_row in invoice_costumer:
         row = table.row()
         for datum in data_row:
             row.cell(datum)

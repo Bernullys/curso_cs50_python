@@ -13,7 +13,7 @@ options = {
     "Check the bill by customer": 4,# This option ask for the customer name and then it shows the bill of that customer.
     "Add item to an active customer": 5,    # This option is to add an item to an existin customer's bill. 
     "Confirm paiment and save bill in a pdf into a different folder": 6,    # Once a costumer wants to pay, this option will print a the 
-                                                                            # customer invoice as a pdf.
+                                                                            # customer invoice as a pdf. (Would be good if is saved in a folder)
                                                                             # Now the costumer and its orders must be take out
                                                                             # of the custumers list, and their items out of current_bills.csv. 
     "Add a new product to the menu": 7,
@@ -36,7 +36,8 @@ def main():
     #this while loop keep the program runing.
     while True:
         selected_option = selection()   #selection function take and return the number of the selected option.
-        if selected_option == "1":      #show_menu function prints the menu. So the user can indicate with item wants.
+        
+        if selected_option == "1":      #show_menu function prints the menu. So the user can indicate which item wants.
             show_menu("menu.csv")       #The funtion gets as parameter the file directly.
 
         elif selected_option == "2":    # add a custumer. That by creating a new instance of a Bill class and is append to the list custumers.
@@ -72,10 +73,15 @@ def main():
                         custumers[i].order(input(f"{c.custumer_name} please tell us your new order: "))
                         is_ordering_again = input(f"{c.custumer_name} do you want another item? ")
 
+        elif selected_option == "6":
+            check_custumer = input("Please type the costumer which is going to pay its tap: ")
+            for c in custumers:
+                if c.custumer_name == check_custumer:
+                    c.invoice(check_custumer)
 
-def presentation(): # This function will print all options every time the application is running.
-                    # Whith a time of delay so it can be more aesy to read.
-    print("Welcome to the Bar Restaurant")
+def presentation(): # This function will print all options every time the application get started.
+                    # With a time of delay so it can be aesy to read.
+    print("Welcome to the __BADR__ Bar Restaurant")
     for o in options:
        time.sleep(0.01)
        print(f"Select option: {options[o]} {o}")
@@ -85,9 +91,9 @@ def selection():
     print("Select your option number")
     return input("")
 
-def show_menu(csv_file):
-   menu = []
-   with open (csv_file) as csv_menu:
+def show_menu(csv_file):                                    # Here we get the menu as parameter.
+   menu = []                                                # We read the file and then append it to a list.
+   with open (csv_file) as csv_menu:                        # Finally we print the items and price in the terminal.
     reader = csv.reader(csv_menu)
     for row in reader:
         menu.append({"item": row[0], "price": row[1]})
