@@ -21,7 +21,7 @@ import csv
 # bill_print = PDF()
 # bill_print.add_page()
 
-with open("./current_bills.csv", "r") as csv_file:
+with open("./current_bills.csv") as csv_file:
     data = list(csv.reader(csv_file))
     for row in data:
         invoice_costumer = [row for row in data if row[0] == "Ber"]
