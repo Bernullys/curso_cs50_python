@@ -4,18 +4,20 @@ from bill import Bill
 
 options = {
     "Show the menu": 1,     # This option will call a function that will open a csv_menu.csv file wich has the current menu.
-                            # Then this same function will stored it in a list and then print it in the terminal. 
+                            # Show_menu accepts a csv file as argument. In this app is the menu by default.
+                            # Then this same function will store the menu in a list and then print it in the terminal. 
                             # (The idea is to put son style in this print)
-    "Initialize a bill": 2, # Every time a customer has initialized, the app should keep track with a respald of its bill in a csv file.
-                            # So in a csv file named current_bills.csv will be create an ID and the name of each customer.
+    "Initialize a bill": 2, # Every time a customer is been initialized, the app will keep track with a respald of its bill in a csv file.
+                            # So in a csv file named current_bills.csv will be write the name of each customer, the item, its price and the entire
+                            # date when was make the item.
     "Check active customers": 3,    # This option prints the lenght of the list of custumers and then sweep the list to show each customer
                                     # with its index.
-    "Check the bill by customer": 4,# This option ask for the customer name and then it shows the bill of that customer.
+    "Check the bill by customer": 4,# This option ask for the customer name and then it shows the bill of that customer in the Terminal.
     "Add item to an active customer": 5,    # This option is to add an item to an existin customer's bill. 
-    "Confirm paiment and save bill in a pdf into a different folder": 6,    # Once a costumer wants to pay, this option will print a the 
-                                                                            # customer invoice as a pdf. (Would be good if is saved in a folder)
-                                                                            # Now the costumer and its orders must be take out
-                                                                            # of the custumers list, and their items out of current_bills.csv. 
+    "Confirm paiment and save bill in a pdf": 6,    # Once a costumer wants to pay, this option will print a the 
+                                                    # customer invoice as a pdf.
+                                                    # Now the costumer and its orders must be take out
+                                                    # of the custumers list, and their items out of current_bills.csv. 
     "Add a new product to the menu": 7,
     "Delete a product from the menu": 8,
     "Show stock": 9,
@@ -28,7 +30,7 @@ options = {
 
 def main():
     
-    custumers = []  # In this list we will store all the coustumers bill stancies.
+    customers = []  # In this list we will store all the coustumers bill instancies.
     n = 0           # n is to initialized the index of costumer in the list costumers. 
                     # So each time a costumer is added don't overlap the previews one.
     presentation()  # Presentation function is used to run the program. Presentention prints all the options the program has.
@@ -41,43 +43,47 @@ def main():
             show_menu("menu.csv")       #The funtion gets as parameter the file directly.
 
         elif selected_option == "2":    # add a custumer. That by creating a new instance of a Bill class and is append to the list custumers.
-            n += 1
-            custumer_name = input("Please type the custumer name: ")
-            custumers.append(Bill(custumer_name))
-            is_ordering = "yes"
+            n += 1                      # Here we are controling the index of the list every time a customer is added.
+            customer_name = input("Please type the customer name: ")
+            customers.append(Bill(customer_name))   # Here we are making an instance of a Bill class with a new customer. 
+            is_ordering = "yes"                     # we assume when a  customer is initialized, will ask for at least an item.
             while is_ordering == "yes":
-                custumers[n-1].order(input(f"Please {custumer_name} tell us your order: "))
-                is_ordering = input(f"{custumer_name} do you want another item? ")
+                customers[n-1].order(input(f"Please {customer_name} tell us your order: ")) # order method is appending items to each customer instance.
+                is_ordering = input(f"{customer_name} do you want another item? ")          # Also order method is writing the order with all details in a csv file.
 
         elif  selected_option == "3":   
-            print(f"Now we have {len(custumers)} active(s). Those are:")
-            for index, c in enumerate(custumers):   # To achive this I'm usinng enumerate build in function. (Whatch for documentation)
-                print(f"Custumer {index + 1}.- {c.custumer_name}")
+            print(f"Now we have {len(customers)} active(s):")
+            for index, c in enumerate(customers):   # To achive this I'm usinng enumerate build in function. (Whatch for documentation)
+                print(f"Customer {index + 1}.- {c.customer_name}")
 
-        elif selected_option == "4":    # This option is checking for the exact name of the costumer and the check in the Bills class the instance
+        elif selected_option == "4":    # This option is checking for the exact name of the costumer and then check in the Bills class the instance-
                                         # which match that name. That method by default prints the bill in the terminal.
-                                        # Then we are passing a 10% of taxes directly to the total amount.
-            check_custumer = input("Please type the costumer name: ")
-            for custumer in custumers:
-                if custumer.custumer_name == check_custumer:
-                    custumer.tap(10)
+                                        # Then we are passing a 19% of taxes directly to the total amount.
+            check_customer = input("Please type the customer name: ")
+            for c in customers:
+                if c.customer_name == check_customer:
+                    c.tap(19)
         
         elif selected_option == "5":    # First of all we check if the costumer exist.
                                         # Then we check for the index and the name of the costumer, so then we can add an order to the index
                                         # of that intance of the costumers list
-            check_existing_custumer = input("Which custumer do you want to add an item? ")
-            for i, c in enumerate(custumers): 
-                if c.custumer_name == check_existing_custumer:
+            check_existing_customer = input("Which customer do you want to add an item? ")
+            for index, c in enumerate(customers): 
+                if c.customer_name == check_existing_customer:
                     is_ordering_again = "yes"
                     while is_ordering_again == "yes":   # (Use a list with all the options to be a yes answerd).
-                        custumers[i].order(input(f"{c.custumer_name} please tell us your new order: "))
-                        is_ordering_again = input(f"{c.custumer_name} do you want another item? ")
+                        customers[index].order(input(f"{c.customer_name} please tell us your new order: "))
+                        is_ordering_again = input(f"{c.customer_name} do you want another item? ")
 
         elif selected_option == "6":
-            check_custumer = input("Please type the costumer which is going to pay its tap: ")
-            for c in custumers:
-                if c.custumer_name == check_custumer:
-                    c.invoice(check_custumer)
+            check_customer = input("Please type the customer which is going to pay its bill: ")
+            for c in customers:
+                if c.customer_name == check_customer:   # Here we match the customer's name with its bill.
+                    tip_percent = int(input(f"{check_customer} how much will be your tip? "))
+                    c.invoice(check_customer, tip_percent)           # invoice method is creating a pdf with the customer's invoice.
+                    print(f"Thank's {c.customer_name} for your purchase, your invoice has been printed as a pdf. Please come back soon! Bye")
+                    # Now I have to create a method which delete this customer from the csv file which has all the items
+                    c.delete_customer(check_customer)
 
 def presentation(): # This function will print all options every time the application get started.
                     # With a time of delay so it can be aesy to read.
