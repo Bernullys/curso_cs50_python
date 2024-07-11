@@ -22,9 +22,7 @@ options = {
     "Delete a product from the menu": 8,
     "Show stock": 9,
     "Add or Delete stock": 10,
-    "Change the price of a product": 11,
-    "Check today's sell": 12,
-    "Quit": 13,
+    "Quit": 11,
     # Would be cool if I can check the amount in bitcoins currency
 }
 
@@ -82,8 +80,11 @@ def main():
                     tip_percent = int(input(f"{check_customer} how much will be your tip? "))
                     c.invoice(check_customer, tip_percent)           # invoice method is creating a pdf with the customer's invoice.
                     print(f"Thank's {c.customer_name} for your purchase, your invoice has been printed as a pdf. Please come back soon! Bye")
-                    # Now I have to create a method which delete this customer from the csv file which has all the items
+                    # Now this next method delete this customer from the csv file which has all the items.
                     c.delete_customer(check_customer)
+
+        elif selected_option == "7":
+            add_items_to_menu("./menu.csv")
 
 def presentation(): # This function will print all options every time the application get started.
                     # With a time of delay so it can be aesy to read.
@@ -106,5 +107,30 @@ def show_menu(csv_file):                                    # Here we get the me
     for m in menu:
        print(f"{m['item']}  {m['price']}")
 
-if __name__== "__main__":
+def add_items_to_menu (csv_file):
+    # I have to check first if the item I want to add does not exist
+    new_menu_item = input("Name of the new item in the menu: ")
+    
+    items_in_menu = []
+    with open(csv_file, "r", newline="") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            items_in_menu.append(row["item"])
+
+        if new_menu_item in items_in_menu:
+            print("This item already exist in the menu")
+        else:
+            new_menu_price = input("Price of the new item in the menu: ")
+            with open(csv_file, "a", newline="") as csv_menu:
+                writer = csv.DictWriter(csv_menu, fieldnames=["item", "price"])
+                writer.writerow({"item": new_menu_item, "price": new_menu_price})
+
+
+# I'm going to create a function to open a csv file to read and then returns a variable to be manipulated.
+
+def open_csv_to_read (csv_file):
+    ...
+
+
+if __name__== "__main__": 
   main()

@@ -41,3 +41,17 @@ print("#########################################################################
 actual_time = time.asctime()
 
 print(actual_time)
+
+
+def open_csv_read (csv_file):
+    with open(csv_file, "r", newline="") as file:
+        info = csv.DictReader(file)
+        print(info)
+        for row in info:
+            check_item = "Fries"
+            if row["item"] == check_item:
+                print("Item exists already")
+            print(row)
+
+
+open_csv_read("./menu.csv")  
