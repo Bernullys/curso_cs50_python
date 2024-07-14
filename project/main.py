@@ -86,6 +86,9 @@ def main():
         elif selected_option == "7":
             add_items_to_menu("./menu.csv")
 
+        elif selected_option == "8":
+            delete_product_to_menu("./menu.csv")
+
 def presentation(): # This function will print all options every time the application get started.
                     # With a time of delay so it can be aesy to read.
     print("Welcome to the __BADR__ Bar Restaurant")
@@ -109,7 +112,7 @@ def show_menu(csv_file):                                    # Here we get the me
 
 def add_items_to_menu (csv_file):
     # I have to check first if the item I want to add does not exist
-    new_menu_item = input("Name of the new item in the menu: ")
+    new_menu_item = input("Type the name of the new item to put it in the existing menu: ")
     
     items_in_menu = []
     with open(csv_file, "r", newline="") as file:
@@ -124,6 +127,30 @@ def add_items_to_menu (csv_file):
             with open(csv_file, "a", newline="") as csv_menu:
                 writer = csv.DictWriter(csv_menu, fieldnames=["item", "price"])
                 writer.writerow({"item": new_menu_item, "price": new_menu_price})
+
+def delete_product_to_menu (csv_file):
+    # I have to check if the product I want to delete does exist.
+    product_to_delete = input("Type the name of the product you want to delete: ")
+    items_in_menu = []
+    all_menu = []
+    with open(csv_file, "r", newline="") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            items_in_menu.append(row["item"])
+            all_menu.append(row)
+        print(items_in_menu)
+        if product_to_delete not in items_in_menu:
+            print("This product do not exist")
+        else:
+            for i in items_in_menu:
+                print(i)
+            current_menu = [row for row in all_menu if row["item"] != product_to_delete]
+            print(current_menu)
+            with open(csv_file, "w", newline="") as file:
+                update_menu = csv.DictWriter(file, fieldnames=["item", "price"])
+                update_menu.writeheader()
+                update_menu.writerows(current_menu)  
+
 
 
 # I'm going to create a function to open a csv file to read and then returns a variable to be manipulated.
