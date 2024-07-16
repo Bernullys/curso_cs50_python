@@ -18,10 +18,11 @@ options = {
                                                     # customer invoice as a pdf.
                                                     # Now the costumer and its orders must be take out
                                                     # of the custumers list, and their items out of current_bills.csv. 
-    "Add a new product to the menu": 7,
-    "Delete a product from the menu": 8,
-    "Show stock": 9,
-    "Add or Delete stock": 10,
+    "Add a new product to the menu": 7,             # Ready - Add description to this function.
+    "Delete a product from the menu": 8,            # Ready -Add description to this function.
+    "Show stock": 9,                                # menu.csv file has a third column which specified the amount of stock each product has.
+                                                    # With this function I can show the stock of each product.
+    "Add stock to a specific product": 10,
     "Quit": 11,
     # Would be cool if I can check the amount in bitcoins currency
 }
@@ -89,6 +90,12 @@ def main():
         elif selected_option == "8":
             delete_product_to_menu("./menu.csv")
 
+        elif selected_option == "9":
+            show_stock("menu.csv")
+
+        elif selected_option == "10":
+            add_stock("menu.csv")
+
 def presentation(): # This function will print all options every time the application get started.
                     # With a time of delay so it can be aesy to read.
     print("Welcome to the __BADR__ Bar Restaurant")
@@ -124,9 +131,10 @@ def add_items_to_menu (csv_file):
             print("This item already exist in the menu")
         else:
             new_menu_price = input("Price of the new item in the menu: ")
+            new_item_stock = input("Stock of this new product: ")
             with open(csv_file, "a", newline="") as csv_menu:
-                writer = csv.DictWriter(csv_menu, fieldnames=["item", "price"])
-                writer.writerow({"item": new_menu_item, "price": new_menu_price})
+                writer = csv.DictWriter(csv_menu, fieldnames=["item", "price", "stock"])
+                writer.writerow({"item": new_menu_item, "price": new_menu_price, "stock": new_item_stock})
 
 def delete_product_to_menu (csv_file):
     # I have to check if the product I want to delete does exist.
@@ -151,7 +159,29 @@ def delete_product_to_menu (csv_file):
                 update_menu.writeheader()
                 update_menu.writerows(current_menu)  
 
+def show_stock(csv_file):                                   # Here we get the menu as parameter.                                              
+                                                            # We read the file and then append it to a list.
+   with open (csv_file) as csv_menu:                        # Finally we print the items and price in the terminal.
+    reader = list(csv.DictReader(csv_menu))
+    for row in reader:
+       print(f"{row['item']}  {row['stock']}")
 
+def add_stock(csv_file):
+    product_to_add = input("Type the name of the item you want to add stock: ")
+    amount_to_add = input(f"Type the amount of {product_to_add} you want to add ")
+    new_stock_menu = []
+    with open(csv_file) as csv_menu:
+        reader = list(csv.DictReader(csv_menu))
+        for row in reader:
+            if row["item"] == product_to_add:
+                row["stock"] = int(row["stock"]) + int(amount_to_add)
+            new_stock_menu.append({"item": row["item"], "price": row["price"], "stock": str(row["stock"])})
+
+    with open(csv_file, "w", newline="") as csv_menu:
+        writer = csv.DictWriter(csv_menu, fieldnames=["item", "price", "stock"])
+        writer.writeheader()
+        writer.writerows(new_stock_menu)
+                
 
 # I'm going to create a function to open a csv file to read and then returns a variable to be manipulated.
 

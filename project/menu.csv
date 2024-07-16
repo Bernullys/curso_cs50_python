@@ -1,5 +1,5 @@
-item,price
-soda,10
-burger,5
-fries,3
-birra,5
+item,price,stock
+soda,10,15
+burger,5,15
+birra,5,15
+Coconuts,25,15
