@@ -168,19 +168,30 @@ def show_stock(csv_file):                                   # Here we get the me
 
 def add_stock(csv_file):
     product_to_add = input("Type the name of the item you want to add stock: ")
-    amount_to_add = input(f"Type the amount of {product_to_add} you want to add ")
+    stock_existing_products = []
     new_stock_menu = []
     with open(csv_file) as csv_menu:
         reader = list(csv.DictReader(csv_menu))
         for row in reader:
-            if row["item"] == product_to_add:
-                row["stock"] = int(row["stock"]) + int(amount_to_add)
-            new_stock_menu.append({"item": row["item"], "price": row["price"], "stock": str(row["stock"])})
+            stock_existing_products.append(row["item"])
+        if product_to_add in stock_existing_products:
+            amount_to_add = int(input(f"Type the amount of {product_to_add} you want to add "))
+            for row in reader:
+                if row["item"] == product_to_add:
+                    new_stock_menu.append({"item": row["item"], "price": row["price"], "stock": str(int(row["stock"])+amount_to_add)})
+                else:
+                    new_stock_menu.append({"item": row["item"], "price": row["price"], "stock": row["stock"]})
 
-    with open(csv_file, "w", newline="") as csv_menu:
-        writer = csv.DictWriter(csv_menu, fieldnames=["item", "price", "stock"])
-        writer.writeheader()
-        writer.writerows(new_stock_menu)
+                with open(csv_file, "w", newline="") as csv_menu:
+                    writer = csv.DictWriter(csv_menu, fieldnames=["item", "price", "stock"])
+                    writer.writeheader()
+                    writer.writerows(new_stock_menu)
+
+        else:
+            print("This product does not exist")
+
+
+
                 
 
 # I'm going to create a function to open a csv file to read and then returns a variable to be manipulated.
