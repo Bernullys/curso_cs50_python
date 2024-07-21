@@ -22,7 +22,7 @@ options = {
     "Delete a product from the menu": 8,            # Ready -Add description to this function.
     "Show stock": 9,                                # menu.csv file has a third column which specified the amount of stock each product has.
                                                     # With this function I can show the stock of each product.
-    "Add stock to a specific product": 10,
+    "Add stock to a specific product": 10,          # Ready -Add description to this function.
     "Quit": 11,
     # Would be cool if I can check the amount in bitcoins currency
 }
@@ -45,10 +45,45 @@ def main():
             n += 1                      # Here we are controling the index of the list every time a customer is added.
             customer_name = input("Please type the customer name: ")
             customers.append(Bill(customer_name))   # Here we are making an instance of a Bill class with a new customer. 
-            is_ordering = "yes"                     # we assume when a  customer is initialized, will ask for at least an item.
-            while is_ordering == "yes":
-                customers[n-1].order(input(f"Please {customer_name} tell us your order: ")) # order method is appending items to each customer instance.
-                is_ordering = input(f"{customer_name} do you want another item? ")          # Also order method is writing the order with all details in a csv file.
+            
+            # Here I have to execute a fuction which open the menu.csv file and returns a variable with a dict.
+            entire_menu_list = []
+            menu_current_existing_items = []
+            with open ("./menu.csv", "r") as csv_menu:
+                reading_menu = csv.DictReader(csv_menu)
+                for row in reading_menu:
+                    menu_current_existing_items.append(row["item"])
+                    entire_menu_list.append(row)
+
+                is_ordering = "yes"                     # we assume when a  customer is initialized, will ask for at least an item.
+                while is_ordering == "yes":
+                    initial_orders = input(f"Please {customer_name} tell us your order: ")
+                    # Then I have to check if the order of the customer is in the menu, 
+                    if initial_orders in menu_current_existing_items:
+                        # I also have to check if the selected items has stock > 0.
+
+                        customers[n-1].order(initial_orders) # order method is appending items to each customer instance.
+                        # and now I have to execute another function which delete an item from the stock of the order.
+                        # Then I have to execute a fucntion which write again the modified menu.
+                    
+                    new_new_menu = []
+                    for items_stock in entire_menu_list:
+                        if items_stock["item"] == initial_orders:
+                            if int(items_stock["stock"]) > 0:
+                                items_stock["stock"] = int(items_stock["stock"]) - 1
+                                new_new_menu.append(items_stock)
+                            else:
+                                print("Sorry, by the moment we don't have stock of this item")
+                                new_new_menu.append(items_stock)
+                        else:
+                            new_new_menu.append(items_stock)
+
+                    with open("./menu.csv", "w", newline="") as modified_stock_menu:
+                        writing_menu = csv.DictWriter(modified_stock_menu, fieldnames=["item", "price", "stock"])
+                        writing_menu.writeheader()
+                        writing_menu.writerows(new_new_menu)
+
+                    is_ordering = input(f"{customer_name} do you want another item? ")          # Also order method is writing the order with all details in a csv file.
 
         elif  selected_option == "3":   
             print(f"Now we have {len(customers)} active(s):")
