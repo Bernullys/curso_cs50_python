@@ -2,29 +2,31 @@ import time
 import csv
 from bill import Bill
 
+# options is a dict which contains all the characteristics of this project, where each key is the characteristic and its value is a 
+# number from 1 to 11 where the user can select to work when running a bar restaurant.
 options = {
-    "Show the menu": 1,     # This option will call a function that will open a csv_menu.csv file wich has the current menu.
-                            # Show_menu accepts a csv file as argument. In this app is the menu by default.
+    "Show the menu": 1,     # This option will call a function that will open a csv_menu.csv file which has the current menu.
+                            # Show_menu accepts a CSV file as an argument. In this app, it is the menu by default.
                             # Then this same function will store the menu in a list and then print it in the terminal. 
-                            # (The idea is to put son style in this print)
-    "Initialize a bill": 2, # Every time a customer is been initialized, the app will keep track with a respald of its bill in a csv file.
-                            # So in a csv file named current_bills.csv will be write the name of each customer, the item, its price and the entire
-                            # date when was make the item.
-    "Check active customers": 3,    # This option prints the lenght of the list of custumers and then sweep the list to show each customer
-                                    # with its index.
-    "Check the bill by customer": 4,# This option ask for the customer name and then it shows the bill of that customer in the Terminal.
-    "Add item to an active customer": 5,    # This option is to add an item to an existin customer's bill. 
-    "Confirm paiment and save bill in a pdf": 6,    # Once a costumer wants to pay, this option will print a the 
-                                                    # customer invoice as a pdf.
-                                                    # Now the costumer and its orders must be take out
-                                                    # of the custumers list, and their items out of current_bills.csv. 
+                            # (The idea is to put some style in this print)
+    "Initialize a bill": 2, # Every time a customer is initialized, the app will keep track with a backup of their bill in a CSV file.
+                            # So in a CSV file named current_bills.csv, it will write the name of each customer, the item, its price, and the entire
+                            # date when the item was made.
+    "Check active customers": 3,    # This option prints the length of the list of customers and then sweeps the list to show each customer
+                                    # with their index.
+    "Check the bill by customer": 4,# This option asks for the customer's name and then shows the bill of that customer in the Terminal.
+    "Add item to an active customer": 5,    # This option is to add an item to an existing customer's bill. 
+    "Confirm payment and save bill in a PDF": 6,    # Once a customer wants to pay, this option will print the 
+                                                    # customer invoice as a PDF.
+                                                    # Now the customer and their orders must be taken out
+                                                    # of the customers list, and their items out of current_bills.csv. 
     "Add a new product to the menu": 7,             # Ready - Add description to this function.
-    "Delete a product from the menu": 8,            # Ready -Add description to this function.
-    "Show stock": 9,                                # menu.csv file has a third column which specified the amount of stock each product has.
-                                                    # With this function I can show the stock of each product.
-    "Add stock to a specific product": 10,          # Ready -Add description to this function.
+    "Delete a product from the menu": 8,            # Ready - Add description to this function.
+    "Show stock": 9,                                # menu.csv file has a third column which specifies the amount of stock each product has.
+                                                    # With this function, I can show the stock of each product.
+    "Add stock to a specific product": 10,          # Ready - Add description to this function.
     "Quit": 11,
-    # Would be cool if I can check the amount in bitcoins currency
+    # It would be cool if I can check the amount in bitcoin currency.
 }
 
 def main():
@@ -41,7 +43,7 @@ def main():
         if selected_option == "1":      #show_menu function prints the menu. So the user can indicate which item wants.
             show_menu("menu.csv")       #The funtion gets as parameter the file directly.
 
-        elif selected_option == "2":    # add a custumer. That by creating a new instance of a Bill class and is append to the list custumers.
+        elif selected_option == "2":    # add a customer. That by creating a new instance of a Bill class and is append to the list customers.
             n += 1                      # Here we are controling the index of the list every time a customer is added.
             customer_name = input("Please type the customer name: ")
             customers.append(Bill(customer_name))   # Here we are making an instance of a Bill class with a new customer. 
@@ -62,21 +64,20 @@ def main():
                     if initial_orders in menu_current_existing_items:
                         # I also have to check if the selected items has stock > 0.
 
-                        customers[n-1].order(initial_orders) # order method is appending items to each customer instance.
                         # and now I have to execute another function which delete an item from the stock of the order.
                         # Then I have to execute a fucntion which write again the modified menu.
-                    
-                    new_new_menu = []
-                    for items_stock in entire_menu_list:
-                        if items_stock["item"] == initial_orders:
-                            if int(items_stock["stock"]) > 0:
-                                items_stock["stock"] = int(items_stock["stock"]) - 1
-                                new_new_menu.append(items_stock)
+                        new_new_menu = []
+                        for items_stock in entire_menu_list:
+                            if items_stock["item"] == initial_orders:
+                                if int(items_stock["stock"]) > 0:
+                                    customers[n-1].order(initial_orders) # Just now is when i can add a order method is appending items to each customer instance.
+                                    items_stock["stock"] = int(items_stock["stock"]) - 1
+                                    new_new_menu.append(items_stock)
+                                else:
+                                    print("Sorry, by the moment we don't have stock of this item")
+                                    new_new_menu.append(items_stock)
                             else:
-                                print("Sorry, by the moment we don't have stock of this item")
                                 new_new_menu.append(items_stock)
-                        else:
-                            new_new_menu.append(items_stock)
 
                     with open("./menu.csv", "w", newline="") as modified_stock_menu:
                         writing_menu = csv.DictWriter(modified_stock_menu, fieldnames=["item", "price", "stock"])

@@ -1,10 +1,15 @@
-# Project title: __BADR__:"__BAR__"
+# __BADR__BAR__RESTAURANT__RUNNER__
+#### Video Demo: <URL>
+#### Description:
 
-# I need to make a demostration video.
+# This project is design to be use while running a bar restaurant or a similar buisness. It has several characteristics that are very usefull for a restaurant owner.
+# The characteristics of this project are in a dict named "options" which every key describes a feature that can be executed typing its value. These options are shown in the Terminal when the user run the file project.py. Once the user run the program project.py, a function call presentation() will be executed inmediatly, which with a time delay  (usig time module) will ask the user to select the number of the feature which the user need or prefer.
 
-# This descriptions need to have at least 300 words describing the project.
+Now these features will be explaned:
 
-# I want to make an application that its main porpouse is to take the bar restaurant bill by costumer.
+
+
+
 # The menu is going to be into a csv file with the description of each product, its amount and its price. This menu will be display any time with styles.
 # We need a file where we got the stock of each product. We are  going to add a functionallity wich can add and take out products.
 # Functionallity: we can add new products to the stock file. It should check if the product already exists.
