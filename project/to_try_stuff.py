@@ -1,5 +1,6 @@
 import csv
 import time
+import re
 
 menu_optional = {
     "fries": 12,
@@ -46,7 +47,7 @@ print(actual_time)
 def open_csv_read (csv_file):
     list_products = []
     with open(csv_file, "r", newline="") as file:
-        info = csv.reader(file)
+        info = list(csv.DictReader(file))
         print(info)
         for row in info:
             list_products.append(row)
@@ -58,4 +59,23 @@ def open_csv_read (csv_file):
         #     print(row)
 
 
-#open_csv_read("./menu.csv")  
+open_csv_read("./menu.csv")  
+
+# I need a function which returns always a variable tha contains a DictReader so I can manipulate that info in diferents ways.
+
+from tabulate import tabulate
+# List of dictionaries with three key-value pairs
+data = [
+    {"name": "Alice", "age": 30, "city": "New York"},
+    {"name": "Bob", "age": 25, "city": "Los Angeles"},
+    {"name": "Charlie", "age": 35, "city": "Chicago"}
+]
+
+# Extract only the columns you want (name and age)
+filtered_data = [{k: v for k, v in d.items() if k in ["name", "age"]} for d in data]
+
+# Create the table with the filtered columns
+table = tabulate(filtered_data, headers="keys", tablefmt="grid")
+
+# Print the table
+print(table)

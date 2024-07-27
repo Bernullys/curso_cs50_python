@@ -1,5 +1,7 @@
 import time
 import csv
+import re
+from tabulate import tabulate
 from bill import Bill
 
 # options is a dict which contains all the characteristics of this project, where each key is the characteristic and its value is a 
@@ -34,14 +36,15 @@ def main():
     customers = []  # In this list we will store all the coustumers bill instancies.
     n = 0           # n is to initialized the index of costumer in the list costumers. 
                     # So each time a costumer is added don't overlap the previews one.
-    presentation()  # Presentation function is used to run the program. Presentention prints all the options the program has.
+    presentation()  # Presentation function is used to  welcome and show the user which are all the options the program has.
 
-    #this while loop keep the program runing.
+    # this while loop keep the program runing.
     while True:
-        selected_option = selection()   #selection function take and return the number of the selected option.
+        selected_option = selection()   #selection function will ask the user constantly for a number between 1 and 11  which take and return the number of the selected option.
         
         if selected_option == "1":      #show_menu function prints the menu. So the user can indicate which item wants.
-            show_menu("menu.csv")       #The funtion gets as parameter the file directly.
+            listed_menu = open_csv_to_read("./menu.csv")
+            show_menu(listed_menu)       #The funtion gets as parameter the file directly.
 
         elif selected_option == "2":    # add a customer. That by creating a new instance of a Bill class and is append to the list customers.
             n += 1                      # Here we are controling the index of the list every time a customer is added.
@@ -134,24 +137,27 @@ def main():
 
 def presentation(): # This function will print all options every time the application get started.
                     # With a time of delay so it can be aesy to read.
-    print("Welcome to the __BADR__ Bar Restaurant")
+    print("Welcome to __BADR__BAR__REATAURANT__RUNNER__")
     for o in options:
-       time.sleep(0.01)
+       time.sleep(0.01) # I'm using time to add a pause between options so the user can visualized one by one.
        print(f"Select option: {options[o]} {o}")
 
 def selection():
-    time.sleep(0.05)
-    print("Select your option number")
-    return input("")
+    time.sleep(0.2)
+    selected_option = input("Please type your option number: ").strip()
+    if re.search(r"^[1][0-1]?$|^[2-9]$", selected_option):
+        return selected_option
+    else:
+        print("Invalid option")
 
-def show_menu(csv_file):                                    # Here we get the menu as parameter.
-   menu = []                                                # We read the file and then append it to a list.
-   with open (csv_file) as csv_menu:                        # Finally we print the items and price in the terminal.
-    reader = csv.reader(csv_menu)
-    for row in reader:
-        menu.append({"item": row[0], "price": row[1]})
-    for m in menu:
-       print(f"{m['item']}  {m['price']}")
+def show_menu(actual_menu):            # Here we get the menu as parameter. This parameter has to be a list of dicts which contains the keys as needed " item" and "price"
+    try:
+        # Write the explination of this line:
+        filtered_menu = [{key: i for key, i in a.items() if key in ["item", "price"]} for a in actual_menu]
+        print(tabulate(filtered_menu, headers="keys", tablefmt="grid"))
+    except (TypeError, KeyError):
+        print("Check if the menu.csv file exist and if it has the correct format.")
+        pass
 
 def add_items_to_menu (csv_file):
     # I have to check first if the item I want to add does not exist
@@ -233,7 +239,13 @@ def add_stock(csv_file):
 # I'm going to create a function to open a csv file to read and then returns a variable to be manipulated.
 
 def open_csv_to_read (csv_file):
-    ...
+    try:
+        with open(csv_file, "r", newline="") as listed_file:
+            reader = list(csv.DictReader(listed_file))
+            return reader
+    except (FileNotFoundError):
+        print("File not found.")
+        pass
 
 
 if __name__== "__main__": 

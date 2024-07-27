@@ -9,7 +9,7 @@ with open ("./menu.csv") as csv_menu:       # Bringing here this dictionary I ca
     reader = csv.DictReader(csv_menu)
     for row in reader:
         menu[row["item"]] = float(row["price"])
- 
+ # I have to do the try except blocks to check the keys in the menu.csv file
 
 class Bill:                                 # With this class I'm creating customers by name and adding the items to their order list.
     def __init__(self, customer_name):      # Here I'm passing as a name when instancieate a Bill class.
