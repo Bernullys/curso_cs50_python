@@ -36,6 +36,7 @@ customers = []  # In this list we will store all the coustumers bill instancies.
 
 def main():
     
+    menu = "./menu.csv"
     n = 0           # n is to initialized the index of costumer in the list costumers. 
                     # So each time a costumer is added don't overlap the previews one.
 
@@ -46,20 +47,20 @@ def main():
         selected_option = selection()   #selection function will ask the user constantly for a number between 1 and 11  which take and return the number of the selected option.
         
         if selected_option == "1":      #show_menu function prints the menu. So the user can indicate which item wants.
-            listed_actual_menu = open_csv_to_read("./menu.csv")
-            show_table_in_terminal(listed_actual_menu, "item", "price")       #The funtion gets as parameter the file directly.
+            listed_current_menu = open_csv_to_read(menu)
+            show_table_in_terminal(listed_current_menu, "item", "price")       #The funtion gets as parameter the file directly.
 
         elif selected_option == "2":    # add a customer. That by creating a new instance of a Bill class and is append to the list customers.
             n += 1                      # Here we are controling the index of the list every time a customer is added.
-            customer_name = input("Please type the customer name: ")
-            customers.append(Bill(customer_name))   # Here we are making an instance of a Bill class with a new customer. 
+            name = input("Please type the customer name: ")
             
-            # Here I have to execute a fuction which open the menu.csv file and returns a variable with a dict.
-            listed_actual_menu = open_csv_to_read("./menu.csv")
-            
-            listed_modified_menu = add_items_to_customer(customer_name, listed_actual_menu, n)
-
-            open_csv_to_write("./menu.csv", listed_modified_menu, "item", "price", "stock")
+            if checking_existing_customer(name, customers) == False:
+                customers.append(Bill(name))   # Here we are making an instance of a Bill class with a new customer. 
+                listed_current_menu = open_csv_to_read(menu)
+                listed_modified_menu = add_items_to_customer(name, listed_current_menu, n)
+                open_csv_to_write(menu, listed_modified_menu, "item", "price", "stock")
+            else:
+                print("Customer already exists.")
 
 
         elif  selected_option == "3":   
@@ -78,13 +79,17 @@ def main():
         elif selected_option == "5":    # First of all we check if the costumer exist.
                                         # Then we check for the index and the name of the costumer, so then we can add an order to the index
                                         # of that intance of the costumers list
-            check_existing_customer = input("Which customer do you want to add an item? ")
-            for index, c in enumerate(customers): 
-                if c.customer_name == check_existing_customer:
-                    is_ordering_again = "yes"
-                    while is_ordering_again == "yes":   # (Use a list with all the options to be a yes answerd).
-                        customers[index].order(input(f"{c.customer_name} please tell us your new order: "))
-                        is_ordering_again = input(f"{c.customer_name} do you want another item? ")
+            customer = input("Which customer do you want to add an item? ")
+
+            if checking_existing_customer(customer, customers):
+
+                for index, c in enumerate(customers): 
+                    if c.customer_name == customer:
+                        listed_current_menu = open_csv_to_read(menu)
+                        listed_modified_menu = add_items_to_customer(customer, listed_current_menu, index+1)
+                        open_csv_to_write(menu, listed_modified_menu, "item", "price", "stock")
+            else:
+                print("Customer not found")
 
         elif selected_option == "6":
             check_customer = input("Please type the customer which is going to pay its bill: ")
@@ -97,17 +102,17 @@ def main():
                     c.delete_customer(check_customer)
 
         elif selected_option == "7":
-            add_items_to_menu("./menu.csv")
+            add_items_to_menu(menu)
 
         elif selected_option == "8":
-            delete_product_to_menu("./menu.csv")
+            delete_product_to_menu(menu)
 
         elif selected_option == "9":
-            listed_actual_menu = open_csv_to_read("./menu.csv")
-            show_table_in_terminal(listed_actual_menu, "item", "stock")
+            listed_current_menu = open_csv_to_read(menu)
+            show_table_in_terminal(listed_current_menu, "item", "stock")
 
         elif selected_option == "10":
-            add_stock("menu.csv")
+            add_stock(menu)
 
 def presentation(): # This function will print all options every time the application get started.
                     # With a time of delay so it can be aesy to read.
@@ -171,7 +176,7 @@ def delete_product_to_menu (csv_file):
             current_menu = [row for row in all_menu if row["item"] != product_to_delete]
             print(current_menu)
             with open(csv_file, "w", newline="") as file:
-                update_menu = csv.DictWriter(file, fieldnames=["item", "price"])
+                update_menu = csv.DictWriter(file, fieldnames=["item", "price", "stock"])
                 update_menu.writeheader()
                 update_menu.writerows(current_menu)  
 
@@ -231,7 +236,6 @@ def open_csv_to_write(csv_file, listed, column_a, column_b, column_c):
 def add_items_to_customer(customer_name, listed_menu, customer_index):
 
     current_menu_products = [row["item"] for row in listed_menu]
-
     is_ordering = "yes"
     global afirm
     global customers
@@ -251,11 +255,17 @@ def add_items_to_customer(customer_name, listed_menu, customer_index):
                     modified_menu.append(menu)
         else:
             print("Sorry, we don't have that item in our menu")
-
         is_ordering = input(f"{customer_name} do you want another item? ").lower().strip() 
 
-    print(modified_menu)
     return modified_menu
+
+def checking_existing_customer(name, custumers_list):
+    active_customers = [customer.customer_name for customer in custumers_list]
+    if name in active_customers:
+        return True
+    else:
+        return False
+
 
 if __name__== "__main__": 
   main()
