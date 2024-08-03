@@ -17,6 +17,12 @@ menu_optional_two = [
      }
 ]
 
+just_a_list = ["Bernardo", "Patricia"]
+
+print(just_a_list.index("Bernardo"))
+print(len(just_a_list))
+
+
 print(menu_optional["fries"])
 
 print("##########################################")
