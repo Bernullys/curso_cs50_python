@@ -1,14 +1,12 @@
 import csv, time
 from fpdf import FPDF
-from fpdf.fonts import FontFace
-from fpdf.enums import TableCellFillMode
 
 
 menu = {}                                   # This is were I'm taking the menu to be used in the Bill class.
 with open ("./menu.csv") as csv_menu:       # Bringing here this dictionary I can have access to the price of any item by name.
     reader = csv.DictReader(csv_menu)
     for row in reader:
-        menu[row["item"]] = float(row["price"])
+        menu[row["Item"]] = float(row["Price"].replace("$", ""))
  # I have to do the try except blocks to check the keys in the menu.csv file
 
 class Bill:                                 # With this class I'm creating customers by name and adding the items to their order list.
@@ -24,19 +22,19 @@ class Bill:                                 # With this class I'm creating custo
                
         with open ("./current_bills.csv", "a") as file:     # This part is to save every order into a csv file so in case of closing the app,
                                                             # the  orders will still remain saved and also to print the customer pdf invoice.
-            writer = csv.DictWriter(file, fieldnames= ["customer name","items", "price", "ordered at"]) 
-            writer.writerow({"customer name": self.customer_name, "items": items, "price": self.amount, "ordered at": self.time_of_order})
+            writer = csv.DictWriter(file, fieldnames= ["customer name","Items", "Price", "ordered at"]) 
+            writer.writerow({"customer name": self.customer_name, "Items": items, "Price": self.amount, "ordered at": self.time_of_order})
 
     def tap(self, taxes):                   # This method is to check the current tap of each instance. It has taxes as parameter but then is
-        tax = self.amount*taxes/100         # set to 10%. Altought the tip will always be asked.
+        tax = self.amount*taxes/100         # set to 19 %. Altought the tip will always be asked.
         tip = self.amount*int(input("Please type how much will be your % tip: "))/100
         total = self.amount + tax + tip
         print(f"{self.customer_name} this is your current bill:")
         for item in self.items:
-            print(f"{item}              {menu[item]} order on {self.time_of_order}")
-        print(f"Taxes:              {tax}")
-        print(f"Tip:                {tip}")
-        print(f"Total:              {total}")
+            print(f"{item}              {menu[item]}")
+        print(f"Taxes:              ${tax}")
+        print(f"Tip:                ${tip}")
+        print(f"Total:              ${total}")
 
     def invoice(self, customer, tip_percentage):
 
@@ -92,7 +90,7 @@ class Bill:                                 # With this class I'm creating custo
         active_customers = [row for row in all_taps if row["customer_name"] != customer_name]
         
         with open("./current_bills.csv", "w") as file:
-            updated_taps = csv.DictWriter(file, fieldnames= ["customer_name", "items", "price", "ordered_at"])
+            updated_taps = csv.DictWriter(file, fieldnames= ["customer_name", "Items", "Price", "ordered_at"])
             updated_taps.writeheader()
             updated_taps.writerows(active_customers)
           

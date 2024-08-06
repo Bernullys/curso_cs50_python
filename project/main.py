@@ -49,19 +49,19 @@ def main():
             
             if selected_option == "1":      #show_menu function prints the menu. So the user can indicate which item wants.
                 listed_current_menu = open_csv_to_read(menu)
-                show_table_in_terminal(listed_current_menu, "item", "price")       #The funtion gets as parameter the file directly.
+                show_table_in_terminal(listed_current_menu, "Item", "Price")       #The funtion gets as parameter the file directly.
 
             elif selected_option == "2":    # add a customer. That by creating a new instance of a Bill class and is append to the list customers.
-                name = input("Please type the new customer's name: ")
+                customer = input("Please type the new customer's name: ")
                 
-                if checking_existing_customer(name, customers) == False:
-                    customers.append(Bill(name))   # Here we are making an instance of a Bill class with a new customer. 
+                if checking_existing_customer(customer, customers) == (False, False):
+                    customers.append(Bill(customer))   # Here we are making an instance of a Bill class with a new customer. 
                     customers_index = len(customers) - 1                    # Here we are controling the index of the list every time a customer is added.
                     listed_current_menu = open_csv_to_read(menu)
-                    listed_modified_menu = add_items_to_customer(name, listed_current_menu, customers_index)
-                    open_csv_to_write(menu, listed_modified_menu, "item", "price", "stock")
+                    listed_modified_menu = add_items_to_customer(customer, listed_current_menu, customers_index)
+                    open_csv_to_write(menu, listed_modified_menu, "Item", "Price", "Stock")
                 else:
-                    print(f"The customer {name} already exists.")
+                    print(f"The customer {customer} already exists.")
 
 
             elif  selected_option == "3":   
@@ -88,7 +88,7 @@ def main():
                 if name:
                     listed_current_menu = open_csv_to_read(menu)
                     listed_modified_menu = add_items_to_customer(name, listed_current_menu, index)
-                    open_csv_to_write(menu, listed_modified_menu, "item", "price", "stock")
+                    open_csv_to_write(menu, listed_modified_menu, "Item", "Price", "Stock")
                 else:
                     print(f"Customer {customer} not found. Ensure you type the correct name, otherwise they don't have an account with us.")
 
@@ -111,7 +111,7 @@ def main():
 
             elif selected_option == "9":
                 listed_current_menu = open_csv_to_read(menu)
-                show_table_in_terminal(listed_current_menu, "item", "stock")
+                show_table_in_terminal(listed_current_menu, "Item", "Stock")
 
             elif selected_option == "10":
                 add_stock(menu)
@@ -157,27 +157,33 @@ def show_table_in_terminal(actual_menu, column_a, column_b):            # Here w
         pass
 
 def checking_existing_customer(name, custumers_list):
-    active_customers = [customer.customer_name for customer in custumers_list]
-    if name in active_customers:
-        return name, active_customers.index(name)
+    if len(customers) == 0:
+        return False, False
+    elif len(custumers_list) > 0:
+        active_customers = [customer.customer_name for customer in custumers_list]
+        if name in active_customers:
+            return name, active_customers.index(name)
+        else:
+            return False, False
+        
     else:
-        return False
+        return False, False
 
 def add_items_to_customer(customer_name, listed_menu, customer_index):
 
     global afirm
     global customers
-    current_menu_products = [row["item"] for row in listed_menu]
+    current_menu_products = [row["Item"] for row in listed_menu]
     is_ordering = "yes"
     while is_ordering in afirm:
         customer_order = input(f"Please {customer_name} tell us your order: ")
         if customer_order in current_menu_products:
             modified_menu = []
             for menu in listed_menu:
-                if menu["item"] == customer_order:
-                    if int(menu["stock"]) > 0:
+                if menu["Item"] == customer_order:
+                    if int(menu["Stock"]) > 0:
                         customers[customer_index].order(customer_order)
-                        menu["stock"] = int(menu["stock"]) - 1
+                        menu["Stock"] = int(menu["Stock"]) - 1
                         modified_menu.append(menu)
                     else:
                         print("Sorry, by the moment we don't have stock of that item")
@@ -203,7 +209,7 @@ def add_items_to_menu (csv_file):
     with open(csv_file, "r", newline="") as file:
         reader = csv.DictReader(file)
         for row in reader:
-            items_in_menu.append(row["item"])
+            items_in_menu.append(row["Item"])
 
         if new_menu_item in items_in_menu:
             print("This item already exist in the menu")
@@ -211,8 +217,8 @@ def add_items_to_menu (csv_file):
             new_menu_price = input("Price of the new item in the menu: ")
             new_item_stock = input("Stock of this new product: ")
             with open(csv_file, "a", newline="") as csv_menu:
-                writer = csv.DictWriter(csv_menu, fieldnames=["item", "price", "stock"])
-                writer.writerow({"item": new_menu_item, "price": new_menu_price, "stock": new_item_stock})
+                writer = csv.DictWriter(csv_menu, fieldnames=["Item", "Price", "Stock"])
+                writer.writerow({"Item": new_menu_item, "Price": new_menu_price, "Stock": new_item_stock})
 
 def delete_product_to_menu (csv_file):
     # I have to check if the product I want to delete does exist.
@@ -222,7 +228,7 @@ def delete_product_to_menu (csv_file):
     with open(csv_file, "r", newline="") as file:
         reader = csv.DictReader(file)
         for row in reader:
-            items_in_menu.append(row["item"])
+            items_in_menu.append(row["Item"])
             all_menu.append(row)
         print(items_in_menu)
         if product_to_delete not in items_in_menu:
@@ -230,10 +236,10 @@ def delete_product_to_menu (csv_file):
         else:
             for i in items_in_menu:
                 print(i)
-            current_menu = [row for row in all_menu if row["item"] != product_to_delete]
+            current_menu = [row for row in all_menu if row["Item"] != product_to_delete]
             print(current_menu)
             with open(csv_file, "w", newline="") as file:
-                update_menu = csv.DictWriter(file, fieldnames=["item", "price", "stock"])
+                update_menu = csv.DictWriter(file, fieldnames=["Item", "Price", "Stock"])
                 update_menu.writeheader()
                 update_menu.writerows(current_menu)  
 
@@ -244,17 +250,17 @@ def add_stock(csv_file):
     with open(csv_file) as csv_menu:
         reader = list(csv.DictReader(csv_menu))
         for row in reader:
-            stock_existing_products.append(row["item"])
+            stock_existing_products.append(row["Item"])
         if product_to_add in stock_existing_products:
             amount_to_add = int(input(f"Type the amount of {product_to_add} you want to add "))
             for row in reader:
-                if row["item"] == product_to_add:
-                    new_stock_menu.append({"item": row["item"], "price": row["price"], "stock": str(int(row["stock"])+amount_to_add)})
+                if row["Item"] == product_to_add:
+                    new_stock_menu.append({"Item": row["Item"], "Price": row["Price"], "Stock": str(int(row["Stock"])+amount_to_add)})
                 else:
-                    new_stock_menu.append({"item": row["item"], "price": row["price"], "stock": row["stock"]})
+                    new_stock_menu.append({"Item": row["Item"], "Price": row["Price"], "Stock": row["Stock"]})
 
                 with open(csv_file, "w", newline="") as csv_menu:
-                    writer = csv.DictWriter(csv_menu, fieldnames=["item", "price", "stock"])
+                    writer = csv.DictWriter(csv_menu, fieldnames=["Item", "Price", "Stock"])
                     writer.writeheader()
                     writer.writerows(new_stock_menu)
 
