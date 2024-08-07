@@ -80,7 +80,6 @@ class Bill:                                 # With this class I'm creating custo
         invoice_pdf.ln(20)
         invoice_pdf.cell(0, 0, f"Tip: {tip_amount}")
 
-        print(f"Thank's {customer} for your purchase, your invoice has been printed as a pdf. Please come back soon! Bye")
         invoice_pdf.output(f"{customer}_bill.pdf")
 
     def delete_customer(self, customer_name):
