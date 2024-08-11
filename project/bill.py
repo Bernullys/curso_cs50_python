@@ -1,7 +1,6 @@
 import csv, time
 from fpdf import FPDF
 
-
 menu = {}                                   # This is were I'm taking the menu to be used in the Bill class.
 with open ("./menu.csv") as csv_menu:       # Bringing here this dictionary I can have access to the price of any item by name.
     reader = csv.DictReader(csv_menu)
@@ -22,19 +21,19 @@ class Bill:                                 # With this class I'm creating custo
                
         with open ("./current_bills.csv", "a") as file:     # This part is to save every order into a csv file so in case of closing the app,
                                                             # the  orders will still remain saved and also to print the customer pdf invoice.
-            writer = csv.DictWriter(file, fieldnames= ["customer name","Items", "Price", "ordered at"]) 
-            writer.writerow({"customer name": self.customer_name, "Items": items, "Price": self.amount, "ordered at": self.time_of_order})
+            writer = csv.DictWriter(file, fieldnames= ["Customer name","Items", "Price", "Ordered at"]) 
+            writer.writerow({"Customer name": self.customer_name, "Items": items, "Price": self.amount, "Ordered at": self.time_of_order})
 
     def tap(self, taxes):                   # This method is to check the current tap of each instance. It has taxes as parameter but then is
         tax = self.amount*taxes/100         # set to 19 %. Altought the tip will always be asked.
-        tip = self.amount*int(input("Please type how much will be your % tip: "))/100
+        tip = self.amount*int(input(f"Please enter the percentage {self.customer_name}'d like to tip: "))/100
         total = self.amount + tax + tip
-        print(f"{self.customer_name} this is your current bill:")
+        print(f"{self.customer_name} Here is your current bill:")
         for item in self.items:
-            print(f"{item}              {menu[item]}")
-        print(f"Taxes:              ${tax}")
-        print(f"Tip:                ${tip}")
-        print(f"Total:              ${total}")
+            print(f"{item} ${menu[item]:,.2f}")
+        print(f"Taxes: ${tax:,.2f}")
+        print(f"Tip: ${tip:,.2f}")
+        print(f"Total: ${total:,.2f}")
 
     def invoice(self, customer, tip_percentage):
 
@@ -43,9 +42,12 @@ class Bill:                                 # With this class I'm creating custo
             def header(self):
                 self.image("./cs50_shirt.png", 10, 10, 20)                      # Rendering logo (path, position_x, position_y, width):
                 self.set_font("helvetica", "B", 15)                             # Setting font: helvetica bold 15
-                self.cell(80)                                                   # Moving cursor to the right:
-                self.cell(30, 10, "__BADR__BAR__", border=0, align="C")         # Printing title:
-                self.ln(50)                                                     # Performing a line break:
+                self.cell(50)                                                   # Moving cursor to the right:
+                self.cell(100, 10, "__BADR__BAR__RESTAURANT__", border=0, align="C")         # Printing title:
+                self.ln(20)                                                     # Performing a line break:
+                self.set_font("helvetica", "B", 12)                             # Setting font: helvetica bold 15
+                self.cell(20, 20, f"This is your invoice {customer}", border=0, align="L")
+                self.ln(20)
 
             def footer(self):
                 self.set_y(-15)                                                 # Position cursor at 1.5 cm from bottom:
@@ -60,11 +62,14 @@ class Bill:                                 # With this class I'm creating custo
                 if row[0] == customer:                                              # print its invoice.
                     invoice_amount += float(row[2])                                 # Now we add the amount of items of that customer.
         
-        taxes = invoice_amount*1.19
-        tip_amount = invoice_amount*tip_percentage
+        taxes = invoice_amount*0.19
+        tip_amount = invoice_amount*tip_percentage/100
+        
         invoice_pdf = PDF()
-        invoice_pdf.set_font("helvetica", size=14)
+        invoice_pdf.set_font("helvetica", size=10)
         invoice_pdf.add_page()
+
+        invoice_customer.insert(0, ["Customer name","Item(s)","Price [$]", "Ordered at"])
 
         with invoice_pdf.table() as table:
             for invoice_row in invoice_customer:
@@ -72,13 +77,14 @@ class Bill:                                 # With this class I'm creating custo
                 for item in invoice_row:
                     row.cell(item)
 
-        invoice_pdf.ln(50)
-        invoice_pdf.set_font("helvetica", size=14)
-        invoice_pdf.cell(0, 0, f"This is Total: {invoice_amount}")
         invoice_pdf.ln(20)
-        invoice_pdf.cell(0, 0, f"Taxes: {taxes}")
-        invoice_pdf.ln(20)
-        invoice_pdf.cell(0, 0, f"Tip: {tip_amount}")
+        invoice_pdf.set_font("helvetica", size=12)
+        invoice_pdf.cell(0, 0, f"Tip: ${tip_amount:,.2f}", align="R")
+        invoice_pdf.ln(7)
+        invoice_pdf.cell(0, 0, f"Taxes: ${taxes:,.2f}", align="R")
+        invoice_pdf.ln(7)
+        invoice_pdf.set_font("helvetica","B", size=12)
+        invoice_pdf.cell(0, 0, f"Total: ${invoice_amount+taxes+tip_amount:,.2f}", align="R")
 
         invoice_pdf.output(f"{customer}_bill.pdf")
 
@@ -86,10 +92,10 @@ class Bill:                                 # With this class I'm creating custo
         with open("./current_bills.csv") as file:
             all_taps = list(csv.DictReader(file))
             
-        active_customers = [row for row in all_taps if row["customer_name"] != customer_name]
+        active_customers = [row for row in all_taps if row["Customer_name"] != customer_name]
         
         with open("./current_bills.csv", "w") as file:
-            updated_taps = csv.DictWriter(file, fieldnames= ["customer_name", "Items", "Price", "ordered_at"])
+            updated_taps = csv.DictWriter(file, fieldnames= ["Customer_name", "Items", "Price", "Ordered_at"])
             updated_taps.writeheader()
             updated_taps.writerows(active_customers)
           

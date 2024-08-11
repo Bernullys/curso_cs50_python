@@ -1,4 +1,6 @@
 Item,Price,Stock
-soda,$10,60
-burger,$5,50
-birra,$5,50
+soda,$2,36
+burger,$5,0
+beer,$3,4
+water,$1,10
+pizza,$8,10
