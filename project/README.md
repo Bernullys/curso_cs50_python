@@ -2,41 +2,84 @@
 #### Video Demo: <URL>
 #### Description:
 
-# This project is design to be use while running a bar restaurant or a similar buisness. It has several characteristics that are very usefull for a restaurant owner.
-# The characteristics of this project are in a dict named "options" which every key describes a feature that can be executed typing its value. These options are shown in the Terminal when the user run the file project.py. Once the user run the program project.py, a function call presentation() will be executed inmediatly, which with a time delay  (usig time module) will ask the user to select the number of the feature which the user need or prefer.
+# This project is designed to be used while running a bar/restaurant, or a similar business. It has several features that are very useful for managing this type of business.
+# The program runs in the terminal. Upon execution, it immediately prints a list of options in the terminal, each describing what it does. The list prompts the user to choose a number corresponding to the option they want to use.
 
-Now these features will be explaned:
+# Before describing how the program works and what each option does, it’s necessary to understand that the program operates with the following files:
+    # bill.py: This is a file where a class was designed to create, manipulate, and print each user's bill separately. This class is imported into project.py and is used in different parts as needed.
+    # menu.csv: This file contains the bar/restaurant's menu. The header of this file must always be Items, Price, Stock. This file is manipulated in various ways, as will be explained in each option according to how the program works.
+    # current_bills.csv: This file stores the orders of each bar/restaurant customer, maintaining a stored record to generate invoices according to the program's functionality. The header of this file must always be Customer_name, Items, Price, Ordered_at.
+    # cs50_shirt.png: This is an image used as the logo for the invoice when it is requested and printed as a PDF.
+
+# Once the program is executed by typing python project.py, it will run the first function called presentation. This function will print a welcome message in the terminal and a list called options, which is a dictionary that instructs the user to select a number in the range of 0 to 11, as each is described.
+# To make it user-friendly, the presentation function uses a method called sleep() from the time library, which accepts as a parameter the amount of time to wait before continuing to print each option.
+
+# Once the presentation function has run, the program enters a global while True loop that encapsulates most of the program's functionality. This loop includes a try/except block, which is used in the final option to stop the program. Inside this loop, the user is prompted to type a number corresponding to the option they want to select. This is managed through another while True loop, which also contains a try/except block. In this block, the selected option is stored in a variable through a function called selection, which takes the user’s input as a parameter. The selection function requires the selected option number as an argument. It uses the regular expression library with its search method to ensure that the input is a number between 0 and 11. If the input meets the requirement, the function returns the number; otherwise, it raises a ValueError, which triggers the try/except block and prompts the user to enter a digit in the range of 0 to 11. Once this condition is met, the while True loop breaks, and the selected option number is stored in the variable, allowing the program to continue.
+
+# After the option number is selected, the program enters a block of if and elif statements.
 
 
+# Option 0: This option runs the presentation function with the same functionality described earlier. This option was added to the program because, after running the program and using various options, the part where the options are displayed may move out of view, making it necessary to remind the user of the available program options. It is important to remember that option 0 will print the program's options.
 
 
-# The menu is going to be into a csv file with the description of each product, its amount and its price. This menu will be display any time with styles.
-# We need a file where we got the stock of each product. We are  going to add a functionallity wich can add and take out products.
-# Functionallity: we can add new products to the stock file. It should check if the product already exists.
-# We can delete products of the stock file. It shoud check if the product exist, and if you really want to delete it.
-# We can change the price of any product.
-# Admin user ??
+# Option 1: This option will print the current bar/restaurant menu in a tabulated format in the terminal.
+# This option will store in a variable a list of dictionaries returned by the open_csv_to_read function, which requires a .csv file containing the current menu of the bar/restaurant as a parameter. The open_csv_to_read function uses the csv module with its csv.DictReader method to transform the menu.csv file into a list of dictionaries. If the open_csv_to_read function receives an incorrect parameter, it will raise an exception that returns a message indicating that the file could not be found for processing.
+# Once the variable with the menu data is obtained, it is passed as an argument to the show_table_in_terminal function, which also receives two additional arguments specifying the names of the dictionary keys to be displayed as a table in the terminal. show_table_in_terminal function filters the data according to the dictionary keys provided as the second and third parameters, creating a new list of dictionaries that matches the request for each case. It then prints the table in the terminal. in this case, it receives "Items" as the second parameter and "Price" as the third parameter to display the menu to the user as a table. This table is created within the show_table_in_terminal function using the tabulate library and its tabulate method.
+# If the show_table_in_terminal function does not receive the list of dictionaries in its parameter, it raises an exception that prints a message instructing the user to check the existence of the .csv file.
 
-# The main function is to take the bill by table and then when asked print it.
-# It has to add the taxes and tips.
-# It has to confirm if the bill was paid, or only was to show to the costumer.
-# Once the bill is paid, we shoud print a pdf with a nice format, and the company logo. Add date and time to the bill.
-# Also the pdf has to be saved into a directory.
 
-# Also has to keep adding the sells by day.
-# We want to keep track of how many products has been sell by name.
-# It has to be a register of the payment method: card, cash o transfer.
+# Option 2: This option starts a customer's account at the bar/restaurant. It consists of two parts.
+# The first part is a while True loop that contains a try/except block to prompt the user to enter the customer's name, adhering to the following requirements:
+    # Only a single name or a name plus surname are accepted.
+    # Only letters are allowed.
+    # The name or surname must be between 3 and 12 characters long.
+# If the input does not meet these requirements, an exception is raised, a message is printed indicating the necessary requirements for the name to be accepted, and the user is asked to enter the customer's name again.
+# Once the requirements are met, the program moves to the second part of the option, where it uses the Bill class created in the bill.py file in conjunction with four functions from the program.
 
-# How will I run this application?
-    The first idea that came to me is: when run the program promp the user for the app options, which are:
-        - Show the menu.
-        - Initialize a bill.
-        - Print the bill by table.
-        - Confirm if the bill was paid or not.
-        - Save the bill in PDF format.
-        - Add a new product to the menu.
-        - Delete a product from the menu.
-        - Add more of an specific item.
-        - Show the stock.
-        - Change the price of a product.
-        - Check today sells.
+# The second part is within an if/else statement. It checks that the customer being entered does not already exist or have a duplicate name. For this, the checking_existing_customer function is used. Also for this, a list called customers is used, initialized with zero items, in which the created instances of the Bill class will be stored.
+# The checking_existing_customer function requires two parameters: a name and a list of instances of the Bill class. It should return a tuple consisting of a name and the index of the instance corresponding to that name in the customers list that contains all instances of classes Bill. Or if the requirements are not met, it will return a tuple with (False, False).
+# When the checking_existing_customer function is executed, it checks if the second parameter is greater than zero. If no customer has been initialized, it will return (False, False). Otherwise, it creates a list of the names from the previously stored instances of the Bill class. Once the list of names is generated, it checks if the name being checked (the first parameter) matches any in the generated list. If a match is found, it will return the name and the index of the corresponding instance in the customers list. If there is no match, it will return (False, False).
+
+# In this option 2, it is expected that checking_existing_customer returns (False, False), confirming that the customer name to be initialized does not exist in customers list, and a new account is created. The account is created by initializing an instance of the Bill class with the customer's name. This instance is then added to a list customers. Subsequently, an index for that customer is created using their position in the customers list.
+
+# The program assumes that when a customer is created, they will place an order. Therefore, the menu is stored in a variable as a list of dictionaries using the open_csv_to_read function, as described earlier. This is done to have access to the current menu of the bar/restaurant. Afterward, the add_items_to_customer function is executed, which will be explained next.
+
+# The add_items_to_customer function receives three parameters: the customer's name, the current menu list of dictionaries, and the customer's index within the list of instances of the Bill class. The purpose of the add_items_to_customer function is to determine which item the customer wishes to order.
+# A variable is initialized to indicate that the customer is ordering. The program then enters a while loop as long as the variable indicates that the customer is still ordering.
+# The user is prompted to enter the item the customer wants to order. This item is compared with the items available in the current menu, for which a list of menu items is generated. If the item is in that list, the program checks if the stock for that specific item is greater than zero. If it is, the list containing the customer instances of the Bill class is accessed, and the customer name index (passed as a parameter) is used to apply the order method of the Bill class to add the order to that customer's bill. The stock of that item is then decreased in the menu. If the requested item is not on the menu, a message will be printed indicating this. If the stock is zero, a message will also be printed indicating this.
+# The user is then asked if the customer wants to order another item. If the response is affirmative, the loop continues and the user will be prompted again to enter the desired item. When the loop ends, the function returns an updated list of dictionaries for the menu.
+
+# Each time the order method is applied to an instance of the Bill class, a record is added to a file called current_bills.csv. This record includes the customer's name, the item ordered, the price, and the date and time when the order was placed. This record is used when the customer wishes to close their account.
+
+# Now, the list returned by the add_items_to_customer function is passed to the next function, open_csv_to_write, along with four other parameters. This function is responsible for rewriting the .csv file containing the updated bar/restaurant menu. The open_csv_to_write function takes the following parameters: the name of the .csv file, the modified list, and the header for the .csv file.
+
+
+# Option 3: This option indicates how many active customers there are and also enumerates them. It prints a message listing the active customers using the customers list, where the instances of the Bill class that have been initialized are stored. Using a for loop, it prints the index and the customer_name attribute of each instance.
+
+
+# Opcion 4: This option is used solely to check the current bill of the selected customer. It prompts the user to type the name of the customer whose bill they wish to check. The program uses the checking_existing_customer function, as previously described, which returns a name and an index. If the name exists, the instance stored in the customers list at the returned index is applied with the .tap(19) method, which by default adds a 19% tax to the bill. If the name does not match any existing customer, a message is printed indicating that the customer does not exist. Otherwise if the customer exists, the .tap method of the Bill class will prompt the user to enter the percentage of tip the customer wishes to add. This percentage is then used to calculate and print the customer's current bill in the terminal.
+
+
+# Option 5: This option works similarly to the second part of Option 2, with the key difference that in this case, the entered customer's name is expected to already exist in one of the Bill class instances stored in the customers list. To verify this, the checking_existing_customer function is used. If it returns a name and an index, the open_csv_to_read, add_items_to_customer, and open_csv_to_write functions are utilized in the same manner as previously described. If the customer's name is not found, a message will be printed indicating this.
+
+
+# Option 6: This option is used to close a customer's account. It generates a PDF invoice with the customer's name and removes all orders associated with that name from the current_bills.csv file. Additionally, it deletes the instance of the Bill class with the customer_name attribute matching the entered name from the customers list.
+# First, the user is asked for the name of the customer whose account they want to close. This input is checked using the checking_existing_customer function. Next, the user is prompted to specify the percentage of the tip they wish to add to the total cost. The corresponding Bill instance then uses the .invoice method, which takes the name and tip as parameters to generate a PDF invoice for the customer. This PDF is saved in the project's root folder.
+# A thank-you message is printed for the customer, followed by the .delete_customer method of the Bill class being used to remove all records with the customer's name from the current_bills.csv file. Finally, the Bill instance corresponding to the customer is removed from the customers list.
+
+
+# Option 7: This option adds items to the current menu of the bar/restaurant. It calls a function named add_items_to_menu, which takes the current menu CSV file as a parameter. The function first asks the user for the name of the new product to be added. To ensure that the item does not duplicate an existing one, it uses the open_csv_to_read function to read the menu and then stores the list of existing item names in a variable. It then checks if the new item entered by the user is already in this list. If it is, a message is printed indicating that the item already exists. Otherwise, the function asks the user for the price and the stock quantity of the new item. To verify that these values are integers, it uses the checking_integer function, which checks that the entered description is an integer. Once verified, the csv module is used to write the new item to the CSV file containing the current menu using the csv.DictWriter method in "append" mode.
+
+
+# Option 8: This option is responsible for removing items from the current menu. It works similarly to option 7, but instead of adding items, it checks if the item exists so that it can be deleted. If the item is found can be removed, the function uses open_csv_to_write to overwrite the current menu with the updated list. If the item does not exist, a message is printed indicating that the item could not be found.
+
+
+# Option 9: This option is used to display a table showing the stock quantity of each item on the current menu. It functions similarly to option 1, but with the difference that the third parameter in this case is "Stock", so the table will include and display the stock column.
+
+
+# Option 10: This option is used to add stock to an existing item in the current menu. It first asks the user for the name of the item to which they want to add stock. The current menu is then opened and stored in a variable using the open_csv_to_read function as described earlier.
+# A list of items from the menu is generated. The entered item name is then checked against this list. If the item is found, the user is prompted to enter the quantity of stock to be added, using the checking_integer function as explained previously.
+# The item is updated by adding the specified stock quantity to its current stock. Finally, the open_csv_to_write function is used to overwrite the current menu with the updated stock information.
+
+
+# Option 11: This option is used to exit the program. When option 11 is selected, a SystemExit exception is raised, which is the exception handled by the try/except block that wraps the loop keeping the program running. This exception prints a farewell message and closes the program.

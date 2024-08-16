@@ -1,6 +1,4 @@
 Item,Price,Stock
-soda,$2,36
-burger,$5,0
-beer,$3,4
-water,$1,10
-pizza,$8,10
+soda,$5,50
+burger,$10,50
+coco,$10,10
