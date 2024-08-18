@@ -1,5 +1,5 @@
-import time
 import csv
+import time
 import re
 from tabulate import tabulate
 from bill import Bill
@@ -10,7 +10,7 @@ options = {
     "Show the Menu": 1,
     "Initialize a customer": 2,
     "Check active customers": 3,
-    "Check the bill for a customer": 4,
+    "Check the orders of a customer": 4,
     "Add an item to an active customer": 5, 
     "Confirm payment and save the bill as a PDF": 6,
     "Add a new item to the menu": 7,
@@ -48,7 +48,7 @@ def main():
 
             # show_menu function prints the menu. So the user can indicate which item wants.
             elif selected_option == "1":
-                listed_current_menu = open_csv_to_read("")
+                listed_current_menu = open_csv_to_read(menu)
                 show_table_in_terminal(listed_current_menu, "Item", "Price")       #The funtion gets as parameter the file directly.
 
             # Add a customer. That by creating a new instance of a Bill class and is append to the list customers.
@@ -62,7 +62,7 @@ def main():
                             raise TypeError
                     except TypeError:
                         print("Please ensure to enter only a first name or a first and last name format. No digits or special characters are allowed.")
-                        print("Also the accepted range is from 3 to 12 letters each.")
+                        print("Also the accepted range is from 3 to 12 letters each name/lastname.")
                         pass
                 if checking_existing_customer(customer, customers) == (False, False):
                     # Here we are making an instance of a Bill class with a new customer. 
@@ -81,12 +81,12 @@ def main():
                 for index, c in enumerate(customers):
                     print(f"Customer {index + 1}.- {c.customer_name}")
 
-            # Check the current bill of a customer.
+            # Check the orders of a customer.
             elif selected_option == "4":
                 customer = input("Please type the name of the customer whose bill you want to check:").strip().capitalize()
                 name, index = checking_existing_customer(customer, customers)
                 if name:
-                    customers[index].tap(19)
+                    customers[index].current_orders()
                 else:
                     print(f"Customer {customer} not found. Ensure you type the correct name, otherwise they don't have an account with us.")
             
@@ -106,7 +106,7 @@ def main():
                 customer = input("Please type the customer's name who is going to pay their bill: ").strip().capitalize()
                 name, index = checking_existing_customer(customer, customers)
                 if name:
-                    tip_percent = int(input(f"Please enter the percentage {customer}'d like to tip: "))
+                    tip_percent = checking_integer(f"Please enter the percentage {customer}'d like to tip")
                     customers[index].invoice(name, tip_percent)
                     print(f"Thanks, {name}, for your purchase, your invoice has been printed as a PDF. Please come back soon! Goodbye")
                     customers[index].delete_customer(customer) 
@@ -210,7 +210,16 @@ def open_csv_to_write(csv_file_name, listed, column_a, column_b, column_c):
         writing.writerows(listed)
 
 def add_items_to_menu (csv_file):
-    new_menu_item = input("Type the name of the new item to put it in the existing menu: ").strip().lower()
+    while True:
+        try:
+            new_menu_item = input("Type the name of the new item to put it in the existing menu: ").strip().lower()
+            if re.search(r"^[a-zA-Z]{3,12}$", new_menu_item):
+                break
+            else:
+                raise TypeError
+        except TypeError:
+            print("Menu items must contain only letters, with a length between 3 and 12 characters.")
+            pass
     reader = open_csv_to_read(csv_file)
     items_in_menu = [row["Item"] for row in reader]
     if new_menu_item in items_in_menu:
@@ -251,10 +260,13 @@ def add_stock(csv_file):
 def checking_integer(input_description):
     while True:
         try:
-            number_to_check = input(f"{input_description}: ")
-            return int(number_to_check)
+            number_to_check = input(f"{input_description}: ").strip()
+            if int(number_to_check) < 0:
+                raise ValueError
+            else:
+                return int(number_to_check)
         except ValueError:
-            print("You have to enter a intenger")
+            print("You have to enter a positive integer number")
             pass
 
 if __name__== "__main__": 

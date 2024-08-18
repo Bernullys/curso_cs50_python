@@ -1,13 +1,14 @@
 import pytest
 from bill import Bill
 import csv
-from project import selection, open_csv_to_read, show_table_in_terminal, checking_existing_customer, add_items_to_customer, add_items_to_menu, delete_product_to_menu, add_stock, checking_intenger
+from project import selection, open_csv_to_read, checking_existing_customer
 
 def main():
 
 
     test_selection()
     test_checking_existing_customer()
+    test_open_csv_to_read()
 
 
 def test_selection():
@@ -42,6 +43,7 @@ def test_checking_existing_customer():
     assert checking_existing_customer("12345", customers) == (False, False)
     assert checking_existing_customer("Bernardo", any_ustomers) == (False, False)
 
+
 def test_open_csv_to_read(tmpdir):
 
     csv_file = tmpdir.join("test_file.csv")
@@ -55,9 +57,6 @@ def test_open_csv_to_read(tmpdir):
     expected_result = [{"column1": "value1", "column2": "value2", "column3": "value3"}]
 
     assert temporaly_file == expected_result
-
-
-
 
 
 if __name__ == "__main__":
