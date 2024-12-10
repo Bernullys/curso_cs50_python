@@ -3,6 +3,14 @@ I'm going to put here notes of every clase and exercice of this course
 
 ```py
 
+    General NOTES:
+
+    If we want to test only a part of our code we can use this syntax:
+        # %%
+        ... code
+
+        # %% 
+
     # if the name of a variable is in capitals it means is a constant.
     # even though you can change it is by design of python.
 
