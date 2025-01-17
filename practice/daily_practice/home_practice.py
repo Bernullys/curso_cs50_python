@@ -1,9 +1,11 @@
+import time
 # inside help we can tye the function name and will print the optios the function has.
 # Examples:
 #help(print)
 #help(range)
 #help(sum)
 #help(enumerate)
+help(time)
 
 # Review map
 
@@ -55,3 +57,6 @@ genders = ["Male", "Female", "Male", "Female"]
 combining = zip(names, ages, genders)
 for name, age, gender in combining:
     print(f"{name} is {age} years old, and is a {gender}")
+
+date_time = time.time()
+print(date_time)
