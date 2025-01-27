@@ -103,7 +103,7 @@ Dicts Methods:                                  #keys can not be itarable like l
     .update()                                   #to sum a dict into other.
     .pop(key_name)                              #to delete a key-value from a dict.
     del dict_name[key_name]                     #to delete a key-value from a dict.
-    dict_name.items()                           #returns tuples of key, vlue
+    dict_name.items()                           #returns tuples of key, value
     dict_name.keys()                            #returns a list of keys
     dict_name.values()                          #returns a list of values
     
