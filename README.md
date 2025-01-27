@@ -106,6 +106,8 @@ Dicts Methods:                                  #keys can not be itarable like l
     dict_name.items()                           #returns tuples of key, vlue
     dict_name.keys()                            #returns a list of keys
     dict_name.values()                          #returns a list of values
+    
+    .items()                                    #to get values from another level in a dictionary when iterating.
 
 Manipulating list of dict:
 
