@@ -3,6 +3,20 @@ I'm going to put here notes of every clase and exercice of this course
 
 ```py
 
+    When we create a python file, python automatically creates some variables like:
+        __name__
+        __file__
+        __doc__
+        and more...
+    
+    The name of the file can be executed directly or indirectly.
+        If executed directly (as script __name__ is __main__)
+        If executed indirectly (as module __name__ is the_name_of_the_file)
+
+        If in a file I import as a module another file, this another file will be executed automatically.
+            import as a module: import file_name
+
+
     General NOTES:
 
     If we want to test only a part of our code we can use this syntax:

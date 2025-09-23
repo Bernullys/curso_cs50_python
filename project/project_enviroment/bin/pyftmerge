@@ -1,4 +1,4 @@
-#!/home/badr/curso_python/project/project_enviroment/bin/python3
+#!/home/badr/curso_python/project/project_enviroment/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
